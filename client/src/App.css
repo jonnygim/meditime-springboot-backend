@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "suitRegular";
+  src: url("./font/SUIT-Regular.ttf");
+}
+
+@font-face {
+  font-family: "suitBold";
+  src: url("./font/SUIT-Bold.ttf");
+}
+
+@font-face {
+  font-family: "suitLight";
+  src: url("./font/SUIT-Light.ttf");
+}
