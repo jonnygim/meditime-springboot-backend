@@ -6,7 +6,6 @@ import classes from './Information.module.css';
 const Information = () => {
   return (
     <div className={classes.information}>
-      <Search onSearch={}/>
       <MediList/>
     </div>
   )
