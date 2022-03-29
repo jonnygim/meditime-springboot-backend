@@ -1,16 +1,32 @@
 package dev.medi.meditime.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="USER")
 public class User {
-    private String userId;
-    private String userPw;
-    private String userName;
-    private String userEmail;
-    private String userGender;
-    private String userAge;
 
+    @Id
+    @Column(name="user_id")
+    private String userId;
+    
+    @Column(name="user_pw")
+    private String userPw;
+
+    @Column(name="user_email")
+    private String userEmail;
+
+    @Column(name="user_born")
+    private String userBorn;
+
+    @Column(name="user_gender")
+    private String userGender;
+
+    @Column(name="reg_date")
+    private String regDate;
 
     public String getUserId() {
         return userId;
@@ -24,17 +40,17 @@ public class User {
     public void setUserPw(String userPw) {
         this.userPw = userPw;
     }
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
     public String getUserEmail() {
         return userEmail;
     }
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+    public String getUserBorn() {
+        return userBorn;
+    }
+    public void setUserBorn(String userBorn) {
+        this.userBorn = userBorn;
     }
     public String getUserGender() {
         return userGender;
@@ -42,13 +58,10 @@ public class User {
     public void setUserGender(String userGender) {
         this.userGender = userGender;
     }
-    public String getUserAge() {
-        return userAge;
+    public String getRegDate() {
+        return regDate;
     }
-    public void setUserAge(String userAge) {
-        this.userAge = userAge;
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
     }
-
-    
-    
 }
