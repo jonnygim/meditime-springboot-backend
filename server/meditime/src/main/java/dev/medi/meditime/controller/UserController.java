@@ -11,7 +11,7 @@ import dev.medi.meditime.service.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("")
+@RequestMapping("/signup")
 public class UserController {
     
     private final UserService userService;

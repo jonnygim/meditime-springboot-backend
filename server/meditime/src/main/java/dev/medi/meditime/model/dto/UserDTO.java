@@ -19,6 +19,8 @@ public class UserDTO {
         this.regDate = user.getRegDate();
     }
 
+    public UserDTO() {};
+
     public String getUserId() {
         return userId;
     }
