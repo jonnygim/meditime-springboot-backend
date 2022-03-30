@@ -16,8 +16,11 @@ import Write from './Layout/Write';
 function App() {
   return (
     <div className="App">
+    
     <BrowserRouter>
     <Header />
+    <main className='main'> 
+
     <Routes>
     <Route path="/" element={<Home />}></Route>
     <Route path="/information" element={<Information/>}></Route>
@@ -29,6 +32,7 @@ function App() {
 
     <Route path="/*" element={<NotFound />}></Route>
     </Routes>
+    </main>
     </BrowserRouter>
   <Footer/>
     </div>

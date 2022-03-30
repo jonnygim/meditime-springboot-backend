@@ -48,6 +48,9 @@ const MediCartProvider = (props) => {
     };
 
     // 텅 비었을 때 메소드(추가 예정)
+    const EmptyMediCartHandler = () => {
+        
+    }
 
     const MediCartContext = {
         items: cartState.items,

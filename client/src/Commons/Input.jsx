@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Input.module.css';
 
 // forwareRef 적용 전.
 // const Input = (props) => {
@@ -11,7 +12,7 @@ import React from 'react';
 // forwardRef 적용 후.
 const Input = React.forwardRef((props, ref) => {
   return <div >
-      <input ref={ref} {...props.input} />
+      <input className={classes.input} ref={ref} {...props.input} />
   </div>;
 });
 

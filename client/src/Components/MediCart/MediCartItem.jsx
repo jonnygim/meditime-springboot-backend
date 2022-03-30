@@ -10,7 +10,7 @@ const MediCartItem = (props) => {
             <h2>{props.name}</h2>
             <div className={classes.summary}>
                 {/* <span>{props.효능}</span> */}
-            <Button onClick={props.onClick}>삭제</Button>
+            <Button onClick={props.onRemoveInCart}>삭제</Button>
 
             </div>
 

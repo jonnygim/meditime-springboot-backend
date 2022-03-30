@@ -10,9 +10,9 @@ const AddMediInfo = (props) => {
 
   const submitHandler = (event) => {
       event.preventDefault();
-      const headCountValue =1 ;
-      const headCountValueToNumber = +headCountValue;
-      props.onAddToCart(headCountValueToNumber);
+      const CountValue =1 ;
+      const CountValueToNumber = +CountValue;
+      props.onAddToCart(CountValueToNumber);
   }
   
   
