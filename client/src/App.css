@@ -12,3 +12,8 @@
   font-family: "suitLight";
   src: url("./font/SUIT-Light.ttf");
 }
+
+.main{
+  margin: 120px 150px;
+  text-align: center;
+}

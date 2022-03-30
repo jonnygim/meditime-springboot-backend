@@ -3,6 +3,8 @@ import classes from './MediCart.module.css'
 import MediCartContext from './../Store/MediCartContext'
 import MediCartItem from './MediCartItem';
 
+const BASE_URL = 'http://localhost:8090/api/v1/medibox';
+
 const Cart = (props) => {
 
   const cartContext = useContext(MediCartContext);
@@ -14,26 +16,39 @@ const Cart = (props) => {
     </ul>
   )
 
+  const totalAmount = `${cartContext.totalAmount.toFixed(2)}`;
+
   const cartItems = (
-    <ul className={classes['cartItems']}>
+    <ul className={classes["cartItems"]}>
       {cartContext.items.map((medison) => (
-        <CartItem
-          onClick = {() => cartContext.removeItem(medison.id)}
-          key={medison.id}
-          name={medison.name}
-          // dydir={joblec.headcount}
+        <MediCartItem
+        key={medison.id}
+        id={medison.id}
+        name={medison.name}
+        onRemoveInCart = {() => cartContext.removeItem(medison.id)}
         />
       ))}
     </ul>
   )
 
+  const cartItemsTotal = (
+    <div className={classes.total}>
+      <span>총 복약 수</span>
+      <span>{totalAmount}</span>
+    </div>
+  );
+
+ 
+
+ 
    
 
 
   return (
     <>
-    
-    
+    {cartTitle}
+    {cartItems}
+    {cartItemsTotal}
     </>
   )
 }
