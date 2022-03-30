@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Search from '../../Commons/Search';
 import classes from './MediList.module.css';
 import OneMedi from './OneMedi';
+import MediCartProvider from './../Store/MediCartProvider'
 
 const MediList = (props) => {
   
@@ -11,9 +12,8 @@ const getKeyword = (keyword) => {
   setkeyword(keyword);
 }
  
- const BASE_URL = `http://localhost:8090/api/v1/medisons/`;
+ const BASE_URL = `http://localhost:8090/medicines?keyword=`;
   
-  //미친자식.  
   
 const [medisons, setMedisons] = useState([]);
   
@@ -22,10 +22,10 @@ const [medisons, setMedisons] = useState([]);
   const searchResultHandler = (result) => {
     
     console.log(result);
-    console.log(`${BASE_URL}${result}`);
+    console.log(BASE_URL+result.keyword);
     
     const fetchMedisons = async () => {
-      const response = await fetch(`${BASE_URL}${result}`);
+      const response = await fetch(BASE_URL+result.keyword);
       console.log(response.ok);
       
       const responseData = await response.json();
@@ -52,13 +52,25 @@ const [medisons, setMedisons] = useState([]);
     }
     fetchMedisons().catch(error => console.log(error));
   }
+
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const closeCartHandler = () => {
+    setCartIsShown(false);
+  }
+
+  const openCartHandler = () => {
+    setCartIsShown(true);
+  }
   // medison.
   const mediList = medisons.map((medison) =>
     <OneMedi
-    key={medison.id}
+      key={medison.id}
       id={medison.id}
       image={medison.image}
       name={medison.name}
+      onOpen={openCartHandler}
+
       />
   )
 
@@ -75,14 +87,16 @@ const [medisons, setMedisons] = useState([]);
 
   return (
 
-    
-    <div className={classes.medititle}>
-      <h2>처방약의 이름을 정확히 입력해주세요!</h2>
-      <Search onSearch={searchResultHandler} getKeyword={getKeyword}/>
-      <li className={classes.medilist}>
-        <ul>{mediList}</ul>
-      </li>
-    </div>
+    <MediCartProvider>
+      {cartIsShown && <OneMedi onClose={closeCartHandler}/>}
+      <div className={classes.medititle}>
+        <h2>처방약의 이름을 정확히 입력해주세요!</h2>
+        <Search onSearch={searchResultHandler} getKeyword={getKeyword}/>
+        <li className={classes.medilist}>
+          <ul>{mediList}</ul>
+        </li>
+      </div>
+    </MediCartProvider>
   )
 }
 
