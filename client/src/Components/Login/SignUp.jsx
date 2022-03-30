@@ -13,6 +13,9 @@ class SignUp extends React.Component {
       validPasswordCheck: '',
       email: '',
       validEmail: '',
+      bornYear:'',
+      validBornYear:'',
+      gender:'',
     };
   }
 
@@ -36,20 +39,42 @@ class SignUp extends React.Component {
     //   this.setState({ [key]: validUserId });
     // }
 
-    // 아이디 
-    if (key === 'userId') {
-      this.setState({ [key]: e.target.value });
-    }
-
+  
     // 아이디 중복확인
     if (key === 'userId'){
       var reg = /^(?=.*?[a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣~!@#$%^&*()_+|<>?:{}]).{2,10}$/;
-      var name = e.target.value;
-      if (name.length > 0 && false === reg.test(name)) {
-        this.setState({ validName: '닉네임 2글자 이상 10글자 이하' });
+      var userId = e.target.value;
+      if (userId.length > 0 && false === reg.test(userId)) {
+        this.setState({ validUserId: '닉네임 2글자 이상 10글자 이하' });
       } else {
-        this.setState({ validName: ''});
-        this.setState({ [key]: e.target.value });
+
+        const response = fetch('http://127.0.0.1:8090/sign/validate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            userId: e.target.value,
+          },
+        })
+        // .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          console.log( res.json());
+          if (res === "true") {
+            console.log('response :' + res.json());
+            this.setState({ validUserId: '이미 존재하는 닉네임입니다. '});
+          } else {
+            this.setState({ validUserId: ''});
+            this.setState({ [key]: userId });
+          }
+        })
+        .catch((err) => {
+           console.error(err);
+         });
+
+         const result =  response.json;
+         console.log(result);
       }
     }
 
@@ -119,11 +144,29 @@ class SignUp extends React.Component {
          console.log(result);
       }
     }
+
+    //출생년도 확인
+    if (key === 'bornYear') {
+      var reg = /^(19[0-9][0-9]|20\d{2})$/;
+      var bornYear = e.target.value;
+
+      if (bornYear.length > 0 && false === reg.test(bornYear)) {
+        this.setState({
+          validBornYear: '출생년도 4자리 입력, 숫자 외 입력금지'
+        });
+      } else {
+        this.setState({ validBornYear: ''});
+        this.setState({ [key]: e.target.value });
+      }
+    }
+
+    //성별 확인
+    if (key === 'gender') {
+      this.setState({ [key]: e.target.value });
+    }
   
   };
   
-
-
   // 회원가입 버튼 클릭 이벤트
   handleSignUpButton = () => {
 
@@ -138,11 +181,11 @@ class SignUp extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userId: this.state.name,
+        userId: this.state.userId,
         userPw: this.state.password,
         userEmail: this.state.email,
-        userBorn: "1995",
-        userGender: "M",
+        userBorn: this.state.bornYear,
+        userGender: this.state.gender,
         regDate: new Date().getDate(), 
       }),
     })
@@ -162,6 +205,13 @@ class SignUp extends React.Component {
     return (
       <div class="card">
         <ul>
+        <li>
+            <label htmlFor="UserId" onChange={this.handleSignUpValue('userId')}>
+              <div>아이디</div>
+              <input type="userId"></input>
+              <div>{this.state.validUserId}</div>
+            </label>
+          </li>
           <li>
           <label htmlFor="email">
               <div>email</div>
@@ -184,10 +234,17 @@ class SignUp extends React.Component {
             </label>
           </li>
           <li>
-            <label htmlFor="Name" onChange={this.handleSignUpValue('name')}>
-              <div>닉네임</div>
-              <input type="name"></input>
-              <div>{this.state.validName}</div>
+            <label htmlFor="BornYear" onChange={this.handleSignUpValue('bornYear')}>
+              <div>출생년도</div>
+              <input type="bornYear"></input>
+              <div>{this.state.validBornYear}</div>
+            </label>
+          </li>
+          <li>
+            <label htmlFor="Gender" onChange={this.handleSignUpValue('gender')}>
+              <div>성별</div>
+              남자<input type="radio" name="gender" value="M"></input>
+              여자<input type="radio" name="gender" value="W"></input>
             </label>
           </li>
         </ul>
