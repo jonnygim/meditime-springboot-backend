@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './Components/Login/Login';
-import SignUp from './Components/Login/SignUp';
+import SignUpPage from './Layout/SignUpPage';
 import Footer from './Layout/Footer';
 import Header from './Layout/Header';
 import Home from './Layout/Home';
@@ -26,7 +26,7 @@ function App() {
     <Route path="/login" element={<Login/>}></Route>
     <Route path="/medipeople" element={<MediPeople />}></Route>
     <Route path="/mybox" element={<MyBox />}></Route>
-    <Route path="/signup" element={<SignUp/>}></Route>
+    <Route path="/signuppage" element={<SignUpPage/>}></Route>
     <Route path="/write" element={<Write/>}></Route>
 
     <Route path="/*" element={<NotFound />}></Route>
