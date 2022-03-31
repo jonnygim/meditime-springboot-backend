@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import classes from './MediCart.module.css'
-import MediCartContext from './../Store/MediCartContext'
+import MediCartContext from '../../Store/MediCartContext'
 import MediCartItem from './MediCartItem';
 
 const BASE_URL = 'http://localhost:8090/api/v1/medibox';
@@ -16,16 +16,18 @@ const Cart = (props) => {
     </ul>
   )
 
-  const totalAmount = `${cartContext.totalAmount.toFixed(2)}`;
+  const totalAmount = `${cartContext.totalAmount.toFixed(0)}`;
 
   const cartItems = (
+    
     <ul className={classes["cartItems"]}>
       {cartContext.items.map((medison) => (
         <MediCartItem
         key={medison.id}
         id={medison.id}
         name={medison.name}
-        onRemoveInCart = {() => cartContext.removeItem(medison.id)}
+        image={medison.image}
+        onRemoveInCart = {() => cartContext.removeItem(medison.names)}
         />
       ))}
     </ul>
