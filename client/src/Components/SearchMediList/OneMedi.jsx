@@ -4,7 +4,7 @@ import classes from './OneMedi.module.css';
 
 const OneMedi = (props) => {
 
-  
+  console.log(props.image);
   
   return (
   
@@ -12,6 +12,7 @@ const OneMedi = (props) => {
       <img className={classes.img} src={props.image} alt="Medison Image" />
       <h3>{props.name}</h3>
       <button className={classes.button} onClick={props.onOpen}>상세 보기</button>
+      <hr />
       
       
       {/* <MediInfo  /> */}

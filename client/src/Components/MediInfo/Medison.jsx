@@ -28,7 +28,7 @@ const Medison = (props) => {
   return (
     <li className={classes.book}>
       <div className={classes.book__info}>
-        <img src={props.itemImage} alt="Medison" />
+        <img src={props.image} alt="Medison" />
         <h3>{props.name} <span className={classes.entpItem}>{props.entpItem}</span></h3> 
         <div className={classes.efcItem}>{props.efcItem}</div>
         <div className={classes.methItem}>{props.methItem}</div>
@@ -41,7 +41,8 @@ const Medison = (props) => {
 
 
       </div>
-        <AddMediInfo onAddToCart={addItemToMediCartHandler}></AddMediInfo>
+        {/* <AddMediInfo onAddToCart={addItemToMediCartHandler}></AddMediInfo> */}
+        
     </li>
 
   )
