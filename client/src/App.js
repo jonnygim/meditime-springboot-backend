@@ -19,27 +19,28 @@ import Write from './Layout/Write';
 
 
 function App() {
+  let isAuthorized = sessionStorage.getItem("isAuthorized");
   // Modal.setAppElement('#root')
   return (
-    
-    <BrowserRouter>
-    <Header />
-    <main className='main'> 
+    <div className="App">
+      <BrowserRouter>
+      <Header />
+      <main className='main'> 
 
-    <Routes>
-    <Route path="/" element={<Home />}></Route>
-    <Route path="/information" element={<Information/>}></Route>
-    <Route path="/login" element={<Login/>}></Route>
-    <Route path="/medipeople" element={<MediPeople />}></Route>
-    <Route path="/mybox" element={<MyBox />}></Route>
-    <Route path="/signuppage" element={<SignUpPage/>}></Route>
-    <Route path="/write" element={<Write/>}></Route>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/information" element={<Information/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/medipeople" element={<MediPeople />}></Route>
+          <Route path="/mybox" element={<MyBox />}></Route>
+          <Route path="/signuppage" element={<SignUpPage/>}></Route>
+          <Route path="/write" element={<Write/>}></Route>
 
-    <Route path="/*" element={<NotFound />}></Route>
-    </Routes>
-    </main>
-    </BrowserRouter>
-    <Footer/>
+          <Route path="/*" element={<NotFound />}></Route>
+        </Routes>
+      </main>
+      </BrowserRouter>
+      <Footer/>
     </div>
   );
 
