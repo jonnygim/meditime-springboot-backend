@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
-@Table(name="please")
+@Table(name="USERS")
+@DynamicUpdate
 public class User {
 
     @Id
@@ -28,9 +31,26 @@ public class User {
     @Column(name="reg_date")
     private String regDate;
 
+    public User() {};
+
+    public User(String userId) {
+        this.userId = userId;
+    }
+
+
+    public void updateId(String userId) {
+        this.userId = userId;
+    }
+
+    ////
     public String getUserId() {
         return userId;
     }
+
+    
+
+
+    //
     public void setUserId(String userId) {
         this.userId = userId;
     }

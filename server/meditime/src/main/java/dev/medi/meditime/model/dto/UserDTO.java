@@ -21,6 +21,16 @@ public class UserDTO {
 
     public UserDTO() {};
 
+    public UserDTO(String userId) {
+        this.userId = userId;
+    };
+
+    public UserDTO(String userId, String userPw) {
+        this.userId = userId;
+        this.userPw = userPw;
+    }
+
+    //
     public String getUserId() {
         return userId;
     }
