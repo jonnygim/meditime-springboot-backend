@@ -5,7 +5,7 @@ import dev.medi.meditime.model.dto.UserDTO;
 public interface UserService {
     
     // 로그인
-    String loginUser(UserDTO userDTO);
+    Boolean loginUser(UserDTO userDTO);
 
     // 회원 가입
     void insertUser(UserDTO userDTO);
@@ -19,10 +19,12 @@ public interface UserService {
     // 회원 정보 조회
     UserDTO selectUser(UserDTO userDTO);
 
+    Boolean validateUserId(UserDTO userDTO);
+
 
 
    
     
     
-    //String validateEmail(String email);
+    
 }

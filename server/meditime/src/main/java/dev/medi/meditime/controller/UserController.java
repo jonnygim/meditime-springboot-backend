@@ -2,11 +2,9 @@ package dev.medi.meditime.controller;
 
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.medi.meditime.model.dto.UserDTO;
@@ -42,7 +40,7 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public String userLogin(@RequestBody UserDTO userDTO) {
+    public Boolean userLogin(@RequestBody UserDTO userDTO) {
         System.out.println(userDTO);
 
         return userService.loginUser(userDTO);
@@ -60,7 +58,12 @@ public class UserController {
         userService.deleteUser(userDTO);
     }
 
-    
+    // 아이디 중복 검사
+    @PostMapping("/validate")
+    public Boolean validateUserId(@RequestBody UserDTO userDTO) {
+        System.out.println(userDTO);
+        return userService.validateUserId(userDTO);
+    }
 
 
     // @PostMapping("/validate")

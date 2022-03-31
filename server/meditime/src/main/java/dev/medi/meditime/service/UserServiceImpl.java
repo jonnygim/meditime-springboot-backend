@@ -3,6 +3,7 @@ package dev.medi.meditime.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 import org.springframework.stereotype.Service;
 
 import dev.medi.meditime.model.dto.UserDTO;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
 
         System.out.println("service 에 들어왔다 " + userDTO.getUserId());
+        System.out.println("service 에 들어왔다 " + userDTO.getUserEmail());
         
         user.setUserId(userDTO.getUserId());
         user.setUserPw(userDTO.getUserPw());
@@ -59,10 +61,6 @@ public class UserServiceImpl implements UserService {
         //     System.out.println("user: " + newUser);
         // });
 
-
-
-        
-
         // if (userDTO.getUserId() != null) {
         //     // update
         //     //user.updateId(userDTO.getUserId());
@@ -77,9 +75,10 @@ public class UserServiceImpl implements UserService {
         //    // user.setUserGender(userDTO.getUserGender());
         // }
 
-        
         // userRepository.save(user);
     }
+
+    
 
     // 회원 정보 조회
     @Override
@@ -103,23 +102,57 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Boolean validateUserId(UserDTO userDTO) {
+        System.out.println("받아온 아이디" + userDTO.getUserId());
+        // System.out.println("받아온 이메일" + userDTO.getUserEmail());
+    
+        try {
+            User dbUserId = userRepository.findByUserId(userDTO.getUserId());
+            // User dbUserEmail = userRepository.findByUserEmail(userDTO.getUserEmail());
+
+            if (dbUserId.getUserId().equals(userDTO.getUserId()) && !userDTO.getUserId().isEmpty()) {
+                System.out.println("DB아이디 : " + dbUserId.getUserId());
+                return true;
+            }
+            //  else if(dbUserEmail.getUserEmail().equals(userDTO.getUserEmail())) {
+            //     System.out.println("DB이메일 : " + dbUserEmail.getUserEmail());
+                
+            //     return true;
+            // }
+        } catch (Exception e) {
+            e.getStackTrace();
+            System.out.println("error: " + e); // 다른 항목들 null 값이라서 
+        }
+
+        return false;
+    }
+
+
     // 로그인
     @Override
-    public String loginUser(UserDTO userDTO) {
+    public Boolean loginUser(UserDTO userDTO) {
         // 받아온 id/ pw 확인
         System.out.println(userDTO.getUserId());
         System.out.println(userDTO.getUserPw());
         // System.out.println(userDTO.getUserEmail()); 넘어 온 값이 없으니 null
         
         // repo 값 가져오기
-        User user = userRepository.findByUserId(userDTO.getUserId());
-        System.out.println(userDTO.getUserId() + "유저 비밀번호" + user.getUserPw());
+        try {
+            User user = userRepository.findByUserId(userDTO.getUserId());
+            System.out.println(userDTO.getUserId() + "유저 비밀번호" + user.getUserPw());
+
+            if(userDTO.getUserPw().equals(user.getUserPw())) {
+                return true;
+            } 
+        } catch (Exception e) {
+            e.getStackTrace();
+            System.out.println("error : " + e);
+            
+        }
         
-        if(userDTO.getUserPw().equals(user.getUserPw())) {
-            return "login success";
-        } 
+        return false;
         
-        return "login fail";
     }
 
     // 회원 탈퇴
@@ -136,16 +169,3 @@ public class UserServiceImpl implements UserService {
     
 }
 
-// @Override
-// public String validateEmail(String email) {
-//     System.out.println("받아온 이메일" + email);
- 
-//     User user = userRepository.findByUserEmail(email);
-//     System.out.println("이메일" + user);
-
-//     if (user ==null) {
-//         return "suceess";
-//     }
-
-//     return "fail";
-// }
