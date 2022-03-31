@@ -3,11 +3,14 @@ import classes from './MyBox.module.css';
 import MediCart from '../Components/MediCart/MediCart'
 
 
-const Mybox = () => {
+const Mybox = ({ user }) => {
+
+  const { userId, userPw } = user || {};
+
   return (
     <div className={classes.mybox}>Mybox
-    
-    <MediCart/>
+      <h1>회원 이름 : {userId}</h1>
+      <MediCart/>
     </div>
 
   )
