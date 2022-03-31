@@ -11,8 +11,9 @@ import dev.medi.meditime.model.entity.User;
 public interface UserRepository extends JpaRepository<User, String>{
 
     //public String validateEmail(String email);
-    //@Query("SELECT user_email FROM USERS WHERE user_email = {email}")
-    //User findByUserEmail(String useremail);
+    // @Query("SELECT user_email FROM User u WHERE u.userEmail = :userEmail")
+    User findByUserEmail(String userEmail);
+
     User findByUserId(String userId);
 
     @Transactional
