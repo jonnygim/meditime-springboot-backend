@@ -12,6 +12,9 @@ import MyBox from './Layout/MyBox';
 import NotFound from './Layout/NotFound';
 
 import Write from './Layout/Write';
+import ItemRegisterContainer from "./containers/ItemRegisterContainer"
+import ItemModifyContainer from "./containers/ItemModifyContainer"
+import ItemReadContainer from "./containers/ItemReadContainer"
 
 
 
@@ -31,6 +34,9 @@ function App() {
     <Route path="/mybox" element={<MyBox />}></Route>
     <Route path="/signuppage" element={<SignUpPage/>}></Route>
     <Route path="/write" element={<Write/>}></Route>
+    <Route path="/create" element={<ItemRegisterContainer/>}></Route>
+    <Route path="/edit/:itemId" element={<ItemModifyContainer/>}></Route>
+    <Route path="/read/:itemId" element={<ItemReadContainer/>}></Route>
 
     <Route path="/*" element={<NotFound />}></Route>
     </Routes>
