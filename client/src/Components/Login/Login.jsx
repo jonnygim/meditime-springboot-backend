@@ -25,7 +25,7 @@ function Login() {
               <div><input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} class="login__input"/></div>
               <div><input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} class="login__input"/></div>
               <div><button type="submit" onSubmit={onSubmit} class="login__button">로그인</button></div>
-              <Link to="/signup"><button type="submit" onSubmit={onSubmit} class="login__button2">회원가입</button></Link>
+              <Link to="/signuppage"><button type="submit" onSubmit={onSubmit} class="login__button2">회원가입</button></Link>
           </form>
          
         </div>
