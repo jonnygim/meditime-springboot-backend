@@ -92,8 +92,7 @@ const [medisons, setMedisons] = useState([]);
       atpnItem = {medison.atpnItem}
       intrItem = {medison.intrItem}
       seItem = {medison.seItem}
-      depoItem = {props.depoItem}
-      itemImage = {props.itemImage}
+      depoItem = {medison.depoItem}
       // onOpen={()=> setModalIsOpen(true)}
 
       />
@@ -118,7 +117,8 @@ const [medisons, setMedisons] = useState([]);
        {/* {cartIsShown && <OneMedi onClose={closeCartHandler}/>} */}
       <div className={classes.medititle}>
         <h2>처방약의 이름을 정확히 입력해주세요!</h2>
-        <Search onSearch={searchResultHandler} getKeyword={getKeyword}/>
+        <Search classes={classes.search} onSearch={searchResultHandler} getKeyword={getKeyword}/>
+        
         <li className={classes.medilist}>
           <ul>{mediList}</ul>
         </li>

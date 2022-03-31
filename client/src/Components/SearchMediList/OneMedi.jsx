@@ -46,11 +46,17 @@ const OneMedi = (props) => {
 
 // 약과 사용자 관계의 데이터베이스에 담기를 요청하는 메서드
   const BASE_URL = `http://localhost:8090/medicines?keyword=`;
+  
+  let isAuthorized = sessionStorage.getItem("isAuthorized");
+  const mediName = props.name;
+
+    // Submit 결과 메시지 확인용 Toggle
+    const [didSubmit, setDidSubmit] = useState(false);
 
   const addOneMediToMediCartHandler = async (userData) => {
     console.log(JSON.stringify({
       // userName : userData.,
-      itemName : MediCartContext.items[MediCartContext.items.length-1].itemName,
+      itemName : props.itemName,
     }));
 
     await fetch(BASE_URL,
@@ -60,11 +66,12 @@ const OneMedi = (props) => {
           'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-          // userName: 
-          itemName : MediCartContext.items[MediCartContext.items.length-1].itemName,
+          userName : isAuthorized,
+          itemName : mediName,
         })
       }
-      )
+      );
+      
 
   }
 
@@ -92,27 +99,36 @@ const OneMedi = (props) => {
   return (
 
 
+<>
+    <div >
+      <div className={classes.onemedi}>
 
-    <div className={classes.onemedi}>
       <img className={classes.img} src={props.image} alt="Medison Image" />
-      <h3>{props.name}</h3>
-      <AddMediInfo onAddToCart={addItemToMediCartHandler}/>
+      <h3 className={classes.h3}>{props.name}</h3>
+      <div className={classes.buttons}>
       <Button onClick={onClickToggle}>상세보기</Button>
+      <AddMediInfo onAddToCart={addOneMediToMediCartHandler}/>
+      </div>
+      </div>
       {/* {detailStatus ? <MediDetail/> : null} */}
       <div id="mediDetail" className={detailStatus? classes.medi__detail__on : classes.medi__detail__off}>
-        <li>효능: {props.efcItem}</li>
-        <br />
-        <li>사용법 : <br />{props.methItem}</li>
-        <br />
-        <li>주의사항: {props.atpnItem}</li>
-        <li>상호작용: {props.intrItem}</li>
-        <li>부작용: {props.seItem}</li>
+        <h4>효능</h4>
+        <li>{props.efcItem}</li>
+        <h4>사용법</h4>
+        <li>{props.methItem}</li>
+        <h4>주의사항</h4>        
+        <li>{props.atpnItem}</li>
+        <h4>상호작용</h4>
+        <li>{props.intrItem}</li>
+        <h4>부작용</h4>
+        <li>{props.seItem}</li>
       </div>
-      <hr />
 
 
     </div>
+      <hr className={classes.hr}/>
 
+</>
   )
 }
 

@@ -11,6 +11,6 @@
 }
 
 .button:hover {
-    background-color: skyblue;
-    color: black;
+    background-color: black;
+    color: white;
 }
