@@ -1,6 +1,8 @@
 import React from 'react';
 
 class SignUp extends React.Component {
+
+  isAuthorized = sessionStorage.getItem("isAuthorized");
   
   constructor(props) {
     super(props);
@@ -18,51 +20,37 @@ class SignUp extends React.Component {
       gender:'',
     };
   }
-
-  // 유효성 검사
-  handleSignUpValue = (key) => (e) => {
-    
-    // if (key === 'email') {
-    //   var email = e.target.value;
-    //   this.setState({ [key]: email });
-    // } else if (key === 'password') {
-    //   var password = e.target.value;
-    //   this.setState({ [key]: password });
-    // } else if (key === 'paaaswordCheck') {
-    //   var passwordCheck = e.target.value;
-    //   this.setState({ [key]: passwordCheck });
-    // } else if (key === 'userId') {
-    //   var name = e.target.value;
-    //   this.setState({ [key]: userId });
-    // } else if (key === 'validUserId') {
-    //   var validUserId = e.target.value;
-    //   this.setState({ [key]: validUserId });
-    // }
-
   
-    // 아이디 중복확인
+  /** 유효성 검사 */
+  // 아이디 유효성 검사
+  handleIdValue = (key) => (e) => {
     if (key === 'userId'){
       var reg = /^(?=.*?[a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣~!@#$%^&*()_+|<>?:{}]).{2,10}$/;
+      var blank_pattern = /\s/g;
+      
       var userId = e.target.value;
+
       if (userId.length > 0 && false === reg.test(userId)) {
-        this.setState({ validUserId: '닉네임 2글자 이상 10글자 이하' });
+        
+        this.setState({ validUserId: '아이디 2글자 이상 10글자 이하' });
+
       } else {
 
-        const response = fetch('http://127.0.0.1:8090/sign/validate', {
+        const response = fetch('http://127.0.0.1:8090/user/validate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: {
-            userId: e.target.value,
-          },
+          body: JSON.stringify({
+            userId: userId,
+          })
         })
-        // .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          console.log( res.json());
-          if (res === "true") {
-            console.log('response :' + res.json());
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("아이디 중복확인 데이터 : " + data);
+        
+          if (data) {
+            console.log('response(success) : 존재하는 아이디');
             this.setState({ validUserId: '이미 존재하는 닉네임입니다. '});
           } else {
             this.setState({ validUserId: ''});
@@ -72,12 +60,53 @@ class SignUp extends React.Component {
         .catch((err) => {
            console.error(err);
          });
-
-         const result =  response.json;
-         console.log(result);
-      }
+        
     }
 
+
+    // } else if (key === 'email') {
+    //   var emailreg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    //   var email = e.target.value;
+    //   this.setState({ [key]: email });
+
+    //   if (email.length > 0 && false === emailreg.test(email)) {
+
+    //     this.setState({ validEmail: '올바른 이메일 형식이 아닙니다.' });
+
+    //   } else {
+
+    //     const response = fetch('http://127.0.0.1:8090/user/validate', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify({
+    //         userEmail: e.target.value,
+    //       })
+    //     })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log("이메일 중복확인 데이터 : " + data);
+          
+    //       if (data) {
+    //         console.log('response : 존재하는 이메일');
+    //         this.setState({ validEmail: '이미 존재하는 이메일입니다. '});
+    //       } else {
+    //         this.setState({ validEmail: ''});
+    //         this.setState({ [key]: email });
+    //       }
+    //     })
+    //     .catch((err) => {
+    //        console.error(err);
+    //      });
+    //   }
+    }
+    
+  };
+
+  // 유효성 검사
+  handleSignUpValue = (key) => (e) => {
+    
     // 비밀번호 중복 검사
     if (key === 'password') {
       var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
@@ -103,7 +132,7 @@ class SignUp extends React.Component {
       }
     }
 
-    // 이메일 중복 검사
+    // 이메일 확인
     if (key === 'email') {
       var emailreg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       var email = e.target.value;
@@ -114,37 +143,13 @@ class SignUp extends React.Component {
         this.setState({ validEmail: '올바른 이메일 형식이 아닙니다.' });
 
       } else {
-
-        const response = fetch('http://127.0.0.1:8090/sign/validate', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: {
-            email: e.target.value,
-          },
-        })
-        // .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          console.log( res.json());
-          if (res === "true") {
-            console.log('response :' + res.json());
-            this.setState({ validEmail: '이미 존재하는 이메일입니다. '});
-          } else {
-            this.setState({ validEmail: ''});
-            this.setState({ [key]: email });
-          }
-        })
-        .catch((err) => {
-           console.error(err);
-         });
-
-         const result =  response.json;
-         console.log(result);
+        this.setState({ validEmail: ''});
+        this.setState({ [key]: email });
       }
     }
 
+
+    
     //출생년도 확인
     if (key === 'bornYear') {
       var reg = /^(19[0-9][0-9]|20\d{2})$/;
@@ -167,14 +172,35 @@ class SignUp extends React.Component {
   
   };
   
+  getToday = () => {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return year + "-" + month + "-" + day;
+}
+
   // 회원가입 버튼 클릭 이벤트
   handleSignUpButton = () => {
 
-    // console.log(this.state.name);
-    // console.log(this.state.password);
-    // console.log(this.state.email);
+    console.log(this.state.userId);
+    console.log(this.state.password);
+    console.log(this.state.email);
+    console.log(this.state.bornYear);
+    console.log(this.state.gender);
+    console.log(year + "-" + month + "-" + day);
 
-    fetch('http://127.0.0.1:8090/sign/signup',
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+
+    if(!this.state.userId || !this.state.password || !this.state.email || !this.state.bornYear || !this.state.gender) {
+      alert('항목을 모두 입력해주세요!');
+    }
+    fetch('http://127.0.0.1:8090/user/signup',
     {
       method: 'POST',
       headers: {
@@ -186,12 +212,15 @@ class SignUp extends React.Component {
         userEmail: this.state.email,
         userBorn: this.state.bornYear,
         userGender: this.state.gender,
-        regDate: new Date().getDate(), 
+        regDate: year + "-" + month + "-" + day, 
       }),
     })
     // .then((res) => res.json())
     .then((res) => {
-      console.log('회원가입 완료');
+      if(res.ok) {
+        console.log('회원가입 완료');
+
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -199,6 +228,8 @@ class SignUp extends React.Component {
     });
     
   };
+  
+  
 
   render() {
     const { history } = this.props;
@@ -208,14 +239,14 @@ class SignUp extends React.Component {
         <li>
             <label htmlFor="UserId" onChange={this.handleSignUpValue('userId')}>
               <div>아이디</div>
-              <input type="userId"></input>
+              <input type="userId" onBlur={this.handleIdValue('userId')}></input>
               <div>{this.state.validUserId}</div>
             </label>
           </li>
           <li>
           <label htmlFor="email">
               <div>email</div>
-              <input id="email" type="email" onChange={this.handleSignUpValue('email')}  ></input>
+              <input id="email" type="email" onChange={this.handleSignUpValue('email')}></input>
               <div>{this.state.validEmail}</div>
             </label>
           </li>

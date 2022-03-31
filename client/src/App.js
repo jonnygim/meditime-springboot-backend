@@ -22,33 +22,33 @@ import ItemReadContainer from "./containers/ItemReadContainer"
 
 
 function App() {
+  let isAuthorized = sessionStorage.getItem("isAuthorized");
   // Modal.setAppElement('#root')
   return (
-    
-    <BrowserRouter>
-    <Header />
-    <main className='main'> 
+    <div className="App">
+      <BrowserRouter>
+      <Header />
+      <main className='main'> 
 
-    <Routes>
-    <Route path="/" element={<Home />}></Route>
-    <Route path="/information" element={<Information/>}></Route>
-    <Route path="/login" element={<Login/>}></Route>
-    <Route path="/medipeople" element={<MediPeople />}></Route>
-    <Route path="/mybox" element={<MyBox />}></Route>
-    <Route path="/signuppage" element={<SignUpPage/>}></Route>
-    <Route path="/write" element={<Write/>}></Route>
-    <Route path="/create" element={<ItemRegisterContainer/>}></Route>
-    <Route path="/edit/:itemId" element={<ItemModifyContainer/>}></Route>
-    <Route path="/read/:itemId" element={<ItemReadContainer/>}></Route>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/information" element={<Information/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/medipeople" element={<MediPeople />}></Route>
+          <Route path="/mybox" element={<MyBox />}></Route>
+          <Route path="/signuppage" element={<SignUpPage/>}></Route>
+          <Route path="/write" element={<Write/>}></Route>
+          <Route path="/create" element={<ItemRegisterContainer/>}></Route>
+          <Route path="/edit/:itemId" element={<ItemModifyContainer/>}></Route>
+          <Route path="/read/:itemId" element={<ItemReadContainer/>}></Route>
 
-    <Route path="/*" element={<NotFound />}></Route>
-    </Routes>
-    </main>
-    </BrowserRouter>
-  <Footer/>
+          <Route path="/*" element={<NotFound />}></Route>
+        </Routes>
+      </main>
+      </BrowserRouter>
+      <Footer/>
     </div>
   );
-
 }
 
 export default App;
