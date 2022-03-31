@@ -1,3 +1,27 @@
 .home {
-    margin: 120px 150px;
+    margin: 0;
+    padding: 0;
+}
+.total{
+    position: relative;
+}
+
+.main{
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center; */
+    width: 100%;
+}
+
+.ment{
+    position: absolute;
+    z-index: 0;
+    color: white;
+    margin-top: 20%;
+    margin-left: 10%;
+    text-shadow: 2px 2px 2px  black;
+    font-size: 300%;
+    
 }
