@@ -1,7 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import MediCartProvider from './Store/MediCartProvider';
+
 import Login from './Components/Login/Login';
 import SignUpPage from './Layout/SignUpPage';
+
 import Footer from './Layout/Footer';
 import Header from './Layout/Header';
 import Home from './Layout/Home';
@@ -16,8 +19,8 @@ import Write from './Layout/Write';
 
 
 function App() {
+  // Modal.setAppElement('#root')
   return (
-    <div className="App">
     
     <BrowserRouter>
     <Header />
@@ -39,6 +42,7 @@ function App() {
   <Footer/>
     </div>
   );
+
 }
 
 export default App;

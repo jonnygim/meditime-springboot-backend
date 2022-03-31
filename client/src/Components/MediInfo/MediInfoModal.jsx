@@ -20,8 +20,8 @@ const portalElement = document.getElementById('modal-window');
 const MediInfoModal = (props) => {
   return (
     <>
-    ReactDom.createPortal(<Background onClose={props.onClose} /> ,portalElement)
-    ReactDom.createPortal(<ModalWindow>{props.children}</ModalWindow>, portalElement) 
+    {ReactDom.createPortal(<Background onClose={props.onClose} /> ,portalElement)}
+    {ReactDom.createPortal(<ModalWindow>{props.children}</ModalWindow>, portalElement)}
     </>
   )
     

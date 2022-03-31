@@ -6,6 +6,7 @@ const MediCartContext = React.createContext({
     addItem:(item) => {},
     removeItem:(id)=> {},
     removeAllItem:()=>{},
+    addOneMedi:(item)=>{},
 });
 
 export default MediCartContext
