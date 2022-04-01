@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,20 +15,12 @@ public class MediBox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-
     
     @Column(name="medi_id")
     private String userId;
 
-   
     @Column(name="medi_name")
     private String itemName;
-
-    // @ManyToOne
-    // private Medi medi;
-
-    // @ManyToOne
-    // private User user;
 
     public MediBox() {}
 

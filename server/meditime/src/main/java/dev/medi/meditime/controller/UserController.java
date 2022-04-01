@@ -21,8 +21,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    
-
     // 회원가입
     @PostMapping("/signup")
     public void insertUser(@RequestBody UserDTO userDTO) {
@@ -64,14 +62,5 @@ public class UserController {
         System.out.println(userDTO);
         return userService.validateUserId(userDTO);
     }
-
-
-    // @PostMapping("/validate")
-    // public String validateEmail(@RequestBody String email) {
-    //     System.out.println("요청 이메일" + email);
-    //     return userService.validateEmail(email);
-    // }
-
-    
 
 }

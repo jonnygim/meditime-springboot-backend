@@ -22,7 +22,6 @@ public class MediBoxServiceImpl implements MediBoxService{
     @Autowired
     private MediForUserRepository mediForUserRepository;
 
-    
     // medicinbox 담기
     @Override
     public void insertMediBox(MediBoxDTO mediBoxDTO) {
@@ -33,7 +32,6 @@ public class MediBoxServiceImpl implements MediBoxService{
         medibox.setUserId(mediBoxDTO.getUserId());
         medibox.setItemName(mediBoxDTO.getItemName());
         
-
         mediBoxRepository.save(medibox);
 
     }
@@ -43,8 +41,6 @@ public class MediBoxServiceImpl implements MediBoxService{
         List<MediForUser> list = mediForUserRepository.findByMediBox(userId);
         
         System.out.println("리스트" + list);
-    
-        // List<MediDTO> result = list.stream().map(r -> new MediDTO(r)).collect(Collectors.toList());
 
         List<MediForUserDTO> result = list.stream().map(r -> new MediForUserDTO(r)).collect(Collectors.toList());
         
@@ -58,9 +54,5 @@ public class MediBoxServiceImpl implements MediBoxService{
     // public void deleteMediBox(String userId) {
     //     mediBoxRepository.deleteById(userId);
     // }
-
-
     
-
-
 }

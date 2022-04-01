@@ -10,8 +10,6 @@ import dev.medi.meditime.model.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String>{
 
-    //public String validateEmail(String email);
-    // @Query("SELECT user_email FROM User u WHERE u.userEmail = :userEmail")
     User findByUserEmail(String userEmail);
 
     User findByUserId(String userId);
@@ -20,4 +18,5 @@ public interface UserRepository extends JpaRepository<User, String>{
     @Modifying
     @Query("UPDATE User u SET u.userPw = :userPw WHERE u.userId = :userId")
     void findByUpdate(@Param("userId") String userId, @Param("userPw") String userPw);
+    
 }

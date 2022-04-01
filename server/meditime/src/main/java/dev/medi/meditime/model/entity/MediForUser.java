@@ -39,5 +39,4 @@ public class MediForUser {
         this.itemImage = itemImage;
     }
 
-    
 }

@@ -44,5 +44,4 @@ public class MediBoxController {
     //     mediBoxService.deleteMediBox(userId);
     // }
 
-
 }

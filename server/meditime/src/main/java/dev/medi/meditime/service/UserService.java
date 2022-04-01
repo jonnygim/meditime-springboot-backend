@@ -19,12 +19,7 @@ public interface UserService {
     // 회원 정보 조회
     UserDTO selectUser(UserDTO userDTO);
 
+    // 회원 아이디 중복 확인
     Boolean validateUserId(UserDTO userDTO);
 
-
-
-   
-    
-    
-    
 }

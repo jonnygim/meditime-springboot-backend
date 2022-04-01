@@ -18,13 +18,14 @@ public class MediServiceImpl implements MediService{
 
     @Override
     public List<MediDTO> searchMediList(String itemName, String efcItem) {
+
         System.out.println("keyword" + itemName + efcItem);
 
-        // List<Medi> list = mediRepository.findByitemNameContainingOrEfcItemContaining(itemName, efcItem);
         List<Medi> list = mediRepository.searchMediList(itemName, efcItem);
 
         List<MediDTO> result = list.stream().map(r -> new MediDTO(r)).collect(Collectors.toList());
         System.out.println(result);
+        
         return result;
     
     }

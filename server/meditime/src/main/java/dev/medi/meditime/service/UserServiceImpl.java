@@ -3,7 +3,6 @@ package dev.medi.meditime.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 import org.springframework.stereotype.Service;
 
 import dev.medi.meditime.model.dto.UserDTO;
@@ -33,52 +32,16 @@ public class UserServiceImpl implements UserService {
         user.setRegDate(userDTO.getRegDate());
 
         userRepository.save(user);
-    }
 
-    
+    }
 
     // 회원 정보 업데이트
     @Override
     public void updateUser(UserDTO userDTO) {
-        System.out.println(userDTO.getUserId());
-        System.out.println(userDTO.getUserPw());
 
-        
         userRepository.findByUpdate(userDTO.getUserId(), userDTO.getUserPw());
         
-        // if (userDTO.getUserPw() != user.getUserPw()) {
-        //     user.setUserPw(userDTO.getUserPw());
-        // } else {
-        //     System.out.println("같은 비밀번호 입니다.");
-        // }
-        
-        
-        
-        // user.ifPresent(selectUser -> {
-
-        //     selectUser.setUserId(userDTO.getUserId());
-        //     User newUser = userRepository.save(selectUser);
-        //     System.out.println("user: " + newUser);
-        // });
-
-        // if (userDTO.getUserId() != null) {
-        //     // update
-        //     //user.updateId(userDTO.getUserId());
-        //     userDTO.setUserId(userDTO.getUserId());
-        // } else if (userDTO.getUserPw() != null) {
-        //    // user.setUserPw(userDTO.getUserPw());
-        // } else if (userDTO.getUserEmail() != null) {
-        //     //user.setUserEmail(userDTO.getUserEmail());
-        // } else if (userDTO.getUserBorn() != null) {
-        //     //user.setUserBorn(userDTO.getUserBorn());
-        // } else if (userDTO.getUserGender() != null) {
-        //    // user.setUserGender(userDTO.getUserGender());
-        // }
-
-        // userRepository.save(user);
     }
-
-    
 
     // 회원 정보 조회
     @Override
@@ -87,8 +50,6 @@ public class UserServiceImpl implements UserService {
 
         // DB  
         User user = userRepository.findByUserId(userDTO.getUserId());
-
-        System.out.println(user.getUserEmail());
 
         UserDTO sUserDTO = new UserDTO();
 
@@ -105,21 +66,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean validateUserId(UserDTO userDTO) {
         System.out.println("받아온 아이디" + userDTO.getUserId());
-        // System.out.println("받아온 이메일" + userDTO.getUserEmail());
     
         try {
             User dbUserId = userRepository.findByUserId(userDTO.getUserId());
-            // User dbUserEmail = userRepository.findByUserEmail(userDTO.getUserEmail());
 
             if (dbUserId.getUserId().equals(userDTO.getUserId()) && !userDTO.getUserId().isEmpty()) {
                 System.out.println("DB아이디 : " + dbUserId.getUserId());
+
                 return true;
             }
-            //  else if(dbUserEmail.getUserEmail().equals(userDTO.getUserEmail())) {
-            //     System.out.println("DB이메일 : " + dbUserEmail.getUserEmail());
-                
-            //     return true;
-            // }
         } catch (Exception e) {
             e.getStackTrace();
             System.out.println("error: " + e); // 다른 항목들 null 값이라서 
@@ -148,11 +103,9 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.getStackTrace();
             System.out.println("error : " + e);
-            
         }
         
         return false;
-        
     }
 
     // 회원 탈퇴
@@ -164,8 +117,5 @@ public class UserServiceImpl implements UserService {
             userRepository.delete(selectUser);
         });
     }
-
-    
-    
 }
 
