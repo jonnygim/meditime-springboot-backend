@@ -1,15 +1,15 @@
-import React from 'react'
-import classes from './MediInfoButton.module.css'
-import MediInfoModal from './MediInfoModal'
+import React from "react";
+import classes from "./MediInfoButton.module.css";
+import MediInfoModal from "./MediInfoModal";
 
 const MediInfoButton = (props) => {
   return (
     <MediInfoModal>
-        <button className={classes.button} onClick={props.onOpen}>
+      <button className={classes.button} onClick={props.onOpen}>
         추가
-        </button>
-     </MediInfoModal>
-  )
-}
+      </button>
+    </MediInfoModal>
+  );
+};
 
-export default MediInfoButton
+export default MediInfoButton;

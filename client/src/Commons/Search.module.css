@@ -1,11 +1,10 @@
 .search {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
 }
 
 .button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-

@@ -1,28 +1,26 @@
-.img{
-    height: 100px ;
-    width: 200px;
+.img {
+  height: 100px;
+  width: 200px;
 }
 
-.medi__detail__on{
-    justify-content: left;
-
+.medi__detail__on {
+  justify-content: left;
 }
 
-.medi__detail__off{
-display: none;  
+.medi__detail__off {
+  display: none;
 }
 
 .onemedi {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.h3{
-    margin-left: 30px;
+.h3 {
+  margin-left: 30px;
 }
 
 .buttons {
-   float: right;
+  float: right;
 }

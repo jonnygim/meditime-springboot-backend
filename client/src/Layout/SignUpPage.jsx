@@ -1,12 +1,13 @@
-import React from 'react'
-import SignUp from '../Components/Login/SignUp';
-import classes from './SignUpPage.module.css';
-
+import React from "react";
+import SignUp from "../Components/Login/SignUp";
+import classes from "./SignUpPage.module.css";
 
 const SignUpPage = () => {
   return (
-    <div className={classes.signuppage}><SignUp/></div>
-  )
-}
+    <div className={classes.signuppage}>
+      <SignUp />
+    </div>
+  );
+};
 
-export default SignUpPage
+export default SignUpPage;
