@@ -7,21 +7,33 @@
   padding: 1.5rem 1rem;
   margin: 3rem auto;
   border-radius: 0.3rem;
-  background-color: rgb(176, 235, 234); 
+  background-color: rgb(248, 245, 241); 
   position: relative;
 }
 
 .h3{
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: blue;
+  color: rgb(18, 18, 22);
+  justify-content: center;
+  display: flex;
+  margin-top: 0%;
 }
 
+
 .new{
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: rgb(35, 213, 136);
+  
+  display: flex;
+  justify-content:right ;
+  margin-bottom: 10px;
+  margin-top:0px;
+  margin-right: 20px;
+   
+    
 }
 
 .card_wrap {
@@ -55,25 +67,6 @@
   }
 
 
-    dl { 
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border-bottom: 1px solid #777;
-    }
-    dt{
-      font-weight: 700;
-      text-transform: capitalize;
-      margin-bottom: 0.3rem;
-    }
-    dd{
-      font-size: 0.9rem;
-      color: #555;
-    }
-    
-
-
   .btns {
     position: relative;
     display: flex;
@@ -90,8 +83,14 @@
     background-color: rgb(76, 134, 19);
     color: white;
     
+  }
+
+  .search {
+    margin-right: 450px;
+    margin-top: 50px;
     
   }
+    
     
     .link {
       padding: 0.5rem 1rem;

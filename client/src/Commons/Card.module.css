@@ -1,4 +1,4 @@
-.li{
+.li {
     height: 350px;
     width: 250px;
     margin-bottom: 1.5rem;
@@ -6,8 +6,28 @@
     border: 1px solid #777;
     border-radius: 0.3rem;
     box-shadow: 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.3);
+    
   }
-  .img_set {
+
+.writers {
+    width: 250px;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;     
+}
+
+.contents {
+  width: 250px;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical
+}
+
+.img_set {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -17,52 +37,51 @@
     margin-bottom: 1rem;
     border-radius:0.2rem;
     background-color: #ddd;
-    
-
+    color: #f5f5dc;
   }
 
 
-    dl { 
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border-bottom: 1px solid #777;
-    }
-    dt{
-      font-weight: 700;
-      text-transform: capitalize;
-      margin-bottom: 0.3rem;
-    }
-    dd{
-      font-size: 0.9rem;
-      color: #555;
-    }
     
-
-
-  .btns {
+.btns {
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: auto;
     padding: 0rem ;
-  
-
   }
-   .button {
+  
+.label {
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
-    background-color: rgb(76, 134, 19);
-    color: white;
-    
+    background-color: rgb(234, 234, 221);
+    cursor: pointer;  
+    font-weight:1000 ;
+   
+      
+ }
+  
+.btns input {
+  position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    clip: rect(0 0 0 0); 
+    overflow: hidden;
+}
+
+ 
+  
+  .like_button {
+    width: 10px;
+    height: 15px;
     
   }
-    
-    .view {
+  
+    .more {
       padding: 0.5rem 1rem;
       border-radius: 0.3rem;
       background-color: red;
     }
+
+    
   

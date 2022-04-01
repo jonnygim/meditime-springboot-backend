@@ -1,50 +1,58 @@
 [
-    {
-        "id":"01",
-        "imgUrl":"#7425E9",
-        "imgAlt":"EEEEE",
-        "title":"제목",
-        "content":"내용",
-        "detailLink":"01"
-    },
-    {
-        "id":"02",
-        "imgUrl":"#7425E9",
-        "imgAlt":"EEEEE",
-        "title":"제목",
-        "content":"내용",
-        "detailLink":"01"
-    },
-    {
-        "id":"03",
-        "imgUrl":"#7425E9",
-        "imgAlt":"EEEEE",
-        "title":"제목",
-        "content":"내용",
-        "detailLink":"01"
-    },
-    {
-        "id":"04",
-        "imgUrl":"#7425E9",
-        "imgAlt":"EEEEE",
-        "title":"제목",
-        "content":"내용",
-        "detailLink":"01"
-    },
-    {
-        "id":"05",
-        "imgUrl":"#7425E9",
-        "imgAlt":"EEEEE",
-        "title":"제목",
-        "content":"내용",
-        "detailLink":"01"
-    },
-    {
-        "id":"06",
-        "imgUrl":"#7425E9",
-        "imgAlt":"EEEEE",
-        "title":"제목",
-        "content":"내용",
-        "detailLink":"01"
-    }
-    ]
+{
+    "id":"01",
+    "url":"images/medicine-g1cfd34d63_1920.png",
+    "imgAlt":"EEEEE",
+    "writer":"이동빈",
+    "content":"적을 내용이 없다. 적을 내용이 진짜 없다. 진짜 진짜 적을 내용이 없다.적을 내용이 없다. 적을 내용이 진짜 없다. 진짜 진짜 적을 내용이 없다.적을 내용이 없다. 적을 내용이 진짜 없다. 진짜 ",
+    "detailLink":"01",
+    "medicine":"다이제틴정, 아스피린"   
+},
+{
+    "id":"02",
+    "url":"#7425E9",
+    "imgAlt":"EEEEE",
+    "writer":"김영애",
+    "content":"동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세",
+    "detailLink":"01",
+    "medicine":"베스타제정, 베로타정"    
+},
+{
+    "id":"03",
+    "url":"#7425E9",
+    "imgAlt":"EEEEE",
+    "writer":"김종원",
+    "content":"내용",
+    "detailLink":"01",
+    "medicine":"잘젠정"    
+},
+{
+    "id":"04",
+    "url":"#7425E9",
+    "imgAlt":"EEEEE",
+    "writer":"양지현",
+    "content":"내용",
+    "detailLink":"01",
+    "medicine":"아스피린프로텍트정100밀리그람"    
+},
+{
+    "id":"05",
+    "url":"#7425E9",
+    "imgAlt":"EEEEE",
+    "writer":"김종국",
+    "content":"내용",
+    "detailLink":"01",
+    "medicine":"활명수"    
+},
+{
+    "id":"06",
+    "url":"#7425E9",
+    "imgAlt":"EEEEE",
+    "writer":"유재석",
+    "content":"내용",
+    "detailLink":"01",
+    "medicine":"바이엘아스피린정500밀리그람"    
+}
+]
+
+
