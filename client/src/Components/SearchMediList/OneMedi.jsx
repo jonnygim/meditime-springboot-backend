@@ -6,7 +6,7 @@ import Button from '../../Commons/Button';
 
 const OneMedi = (props) => {
 
-  
+  console.log(props.name);
 
   const mediCartContext = useContext(MediCartContext);
 
@@ -45,20 +45,24 @@ const OneMedi = (props) => {
   }
 
 // 약과 사용자 관계의 데이터베이스에 담기를 요청하는 메서드
-  const BASE_URL = `http://localhost:8090/medicines?keyword=`;
+  const BASE_URL = `http://localhost:8090/medibox`;
   
   let isAuthorized = sessionStorage.getItem("isAuthorized");
   const mediName = props.name;
-
-    // Submit 결과 메시지 확인용 Toggle
-    const [didSubmit, setDidSubmit] = useState(false);
-
-  const addOneMediToMediCartHandler = async (userData) => {
-    console.log(JSON.stringify({
-      // userName : userData.,
-      itemName : props.itemName,
-    }));
-
+  console.log("밖" + mediName);
+  
+  
+  // Submit 결과 메시지 확인용 Toggle
+  const [didSubmit, setDidSubmit] = useState(false);
+  
+  const addOneMediToMediCartHandler = async (props) => {
+    console.log(props.itemName);
+    // console.log(JSON.stringify({
+    //   userName : isAuthorized,
+    //   itemName : mediName,
+    // }));
+      console.log(isAuthorized);
+      console.log("handler" + mediName);
     await fetch(BASE_URL,
       {
         method: 'POST',
@@ -66,10 +70,12 @@ const OneMedi = (props) => {
           'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-          userName : isAuthorized,
+          userId : isAuthorized,
           itemName : mediName,
         })
       }
+      
+      
       );
       
 
@@ -107,7 +113,7 @@ const OneMedi = (props) => {
       <h3 className={classes.h3}>{props.name}</h3>
       <div className={classes.buttons}>
       <Button onClick={onClickToggle}>상세보기</Button>
-      <AddMediInfo onAddToCart={addOneMediToMediCartHandler}/>
+      <AddMediInfo onOpen={addOneMediToMediCartHandler}/>
       </div>
       </div>
       {/* {detailStatus ? <MediDetail/> : null} */}

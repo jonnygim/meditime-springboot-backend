@@ -2,23 +2,49 @@ package dev.medi.meditime.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="medicinebox")
 public class MediBox {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
 
-    @Column(name="user_id")
+    
+    @Column(name="medi_id")
     private String userId;
 
-    @Column(name="item_name")
+   
+    @Column(name="medi_name")
     private String itemName;
+
+    // @ManyToOne
+    // private Medi medi;
+
+    // @ManyToOne
+    // private User user;
 
     public MediBox() {}
 
     public MediBox(String userId, String itemName) {
         this.userId = userId;
         this.itemName = itemName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserId() {

@@ -13,7 +13,8 @@ const AddMediInfo = (props) => {
   let isAuthorized = sessionStorage.getItem("isAuthorized");
   const BASE_URL_FOR_ADD = '';
   const addMediToCart = async() => {
-    await fetch(BASE_URL_FOR_ADD,
+    console.log(isAuthorized + props.itemName);
+    await fetch(`http://localhost:8090/mediBox`,
       {
         method: 'POST',
         headers: {
@@ -30,7 +31,7 @@ const AddMediInfo = (props) => {
   
     return (
     <form className={classes.info}>
-        <Button type="submit" onClick={addMediToCart}>
+        <Button onClick={props.onOpen}>
            추가
         </Button>
     </form>

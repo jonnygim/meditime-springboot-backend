@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MEDICINE")
+@Table(name="medicine")
 public class Medi {
     
     @Id
@@ -39,6 +39,13 @@ public class Medi {
     
     @Column(name="item_image")
     private String itemImage;
+
+    public Medi() {}
+
+    public Medi(String itemName, String itemImage) {
+        this.itemName = itemName;
+        this.itemImage = itemImage;
+    }
 
     public String getItemName() {
         return itemName;
