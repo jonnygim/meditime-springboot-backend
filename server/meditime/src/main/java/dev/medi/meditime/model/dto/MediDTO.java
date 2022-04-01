@@ -41,12 +41,16 @@ public class MediDTO {
         this.depoItem = r.getDepoItem();
         this.itemImage = r.getItemImage();
 
-
         // this.id = book.getId();
         // this.name = book.getName();
         // this.description = book.getDescription();
         // this.author = book.getAuthor();
         // this.price = book.getPrice();
+    }
+
+    public MediDTO(String itemName, String itemImage) {
+        this.itemName = itemName;
+        this.itemImage = itemImage;
     }
 
     public String getItemName() {
