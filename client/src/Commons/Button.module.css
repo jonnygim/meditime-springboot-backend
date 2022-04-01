@@ -7,10 +7,10 @@
     height: 30px;
     width: 80px;
     color: black;
-    background-color: skyblue;
+    background-color: whitesmoke;
 }
 
 .button:hover {
     background-color: black;
-    color: skyblue;
+    color: white;
 }

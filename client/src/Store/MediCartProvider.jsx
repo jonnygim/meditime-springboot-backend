@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import MediCartContext from './MediCartContext';
 
 const MediCartProvider = (props) => {
 
@@ -7,11 +8,24 @@ const MediCartProvider = (props) => {
         totalAmount: 0
     });
 
+    // 상세정보 모달에 약 상세정보를 추가하는 메서드
+    const addOneMediToMediInfoHandler = (item) => {
+        const updatedItem = [
+            item
+        ]
+
+        setCartState({items: updatedItem, totalAmount: 0});
+    }
+
+
+
+
+
     // cart에 medison 데이터를 추가하는 메서드
     const addItemToMediCartHandler= (item) => {
 
         const existingMediCartItemIndex = cartState.items.findIndex(
-            (cartItem) => cartItem.id === item.id
+            (cartItem) => cartItem.name === item.name
         );
 
         const existingMediCartItem = cartState.items[existingMediCartItemIndex];
@@ -33,6 +47,8 @@ const MediCartProvider = (props) => {
 
     };
 
+
+
     // 하나씩 삭제하는 메서드
     const removeItemFromMediCartHandler = (id) => {
 
@@ -52,17 +68,18 @@ const MediCartProvider = (props) => {
         
     }
 
-    const MediCartContext = {
+    const mediCartContext = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToMediCartHandler,
         removeItem: removeItemFromMediCartHandler,
         removeAllItem: removeAllItemFromMediCartHandler,
+        addOneMedi: addOneMediToMediInfoHandler,
     }
 
 
   return (
-    <MediCartContext.Provider value={MediCartContext}>{props.children}</MediCartContext.Provider>
+    <MediCartContext.Provider value={mediCartContext}>{props.children}</MediCartContext.Provider>
   )
 }
 

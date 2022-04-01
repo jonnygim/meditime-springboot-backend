@@ -1,25 +1,37 @@
 import React, { useRef, useState } from 'react'
 import Button from '../../Commons/Button';
 import classes from './AddMediInfo.module.css'
+import _uniqueId from 'lodash/uniqueId'
 
 const AddMediInfo = (props) => {
   
-  // const [id] = useState(_uniqueId('prefix-'))
+  const [id] = useState(_uniqueId('prefix-'));
 
-  // const inputRef = useRef();
 
-  const submitHandler = (event) => {
-      event.preventDefault();
-      const CountValue =1 ;
-      const CountValueToNumber = +CountValue;
-      props.onAddToCart(CountValueToNumber);
+  const inputRef = useRef();
+
+  let isAuthorized = sessionStorage.getItem("isAuthorized");
+  const BASE_URL_FOR_ADD = '';
+  const addMediToCart = async() => {
+    await fetch(BASE_URL_FOR_ADD,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userName : isAuthorized,
+          itemName: props.itemName
+        })
+      })
+
   }
   
   
     return (
     <form className={classes.info}>
-        <Button type="submit" onClick={submitHandler}>
-           약상자에 추가
+        <Button type="submit" onClick={addMediToCart}>
+           추가
         </Button>
     </form>
   )

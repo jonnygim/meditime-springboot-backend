@@ -9,6 +9,9 @@ import Medison from './Medison';
 const MediInfo = (props) => {
 
   const cartContext = useContext(MediCartContext);
+  
+  // const [mediInfo, setMediInfo] = useState({//cartContext에서 받아온 약 정보});
+
 
   const infoTitle = (
     <ul className={classes.infotitle}>
@@ -21,7 +24,7 @@ const MediInfo = (props) => {
   const mediCount = (
 
     <div className={classes.medicount}>
-      <span>`이 약을 복용하고 있는 사람 : ${null}명`</span>
+      <span>`이 약을 복용하고 있는 사람 : ${mediinfo.mediName}명`</span>
     </div>
   )
 
@@ -94,10 +97,11 @@ const MediInfo = (props) => {
 
 
   return (
-    <MediInfoModal onClose={props.onClose}>
+      <>
       <MediInfoContent />
       <AddMediInfo onAddToCart={addMedisonToCartHandler} />
-    </MediInfoModal>
+      </>
+
   )
 
 

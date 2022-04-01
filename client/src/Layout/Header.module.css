@@ -37,6 +37,19 @@
     font-weight: bold;
 }
 
+button.login {
+    display: flex;
+    margin: 6px;
+    margin-right: 10%;
+    padding: 10px 0;
+    color: black;
+    font-family: suitRegular;
+    font-weight: bold;
+    outline: 0;
+    border: 0;
+    background-color: lightgrey;
+}
+
 .link {
     
     font-weight: bold;
