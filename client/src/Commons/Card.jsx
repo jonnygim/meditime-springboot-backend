@@ -1,42 +1,49 @@
 import React, { useState } from "react"
 import classes from './Card.module.css'
-
-
-
+import { Link } from "react-router-dom";
 
 export default function Card({data}){
 
-   
-    // const [number, setNumber] = useState(0);
-    //  const likePlus = ()=>{ setNumber(number + 1) };
-    //  const likeMinus = ()=>{ setNumber(number <= 0 ? 0 : number -1 )};
-    const colorArr = [
-        {color: '#ddd', fontSize:'1.5rem'},
-        {color: '#f33', fontSize:'1.5rem'},
-  
+//    const btnStyleArr = [
+//         {color: '#333', fontWeight:700, backgroundColor:'#f5f5dc'},
+//         {color: '#155', fontWeight:700, backgroundColor:'#f5f5dc', border:'1px solid #777'}
+//    ];
+    const styleArr = [
+        {color: '#000'}, {color: '#f00'}
     ];
     const [like, setLike] = useState(0);
-    const fnCheck = ()=>{ setLike(()=> like === 0 ? 1 : 0 ) };
+    const [checkState, setCheckState] = useState('');
+    const likeCheck = (e)=>{ 
+        setLike( ()=> like === 0 ? 1 : 0 ) 
+        setCheckState( e.target.checked );
+        
+    };
 
-   
     return(
         <li className={classes.li}>
-            <div    className={classes.img_set}
-                    style={{backgroundColor:data.imgUrl}}> {data.imgAlt}
+            <div className={classes.writers}>작성자:{data.writer}({data.medicine})</div>
+            <div className={classes.img_set}
+                 style={{backgroundColor:data.url}}> {data.imgAlt}
             </div>
-            <dl>
-                <dt>{data.title}</dt>
-                <dd>{data.content}</dd>
-            </dl>
-            <div className={classes.btns}>
+         
+            <div className={classes.contents}>{data.content}</div>
+                           
+            <div className={classes.btns}>                    
+                    <input  
+                            class="blind"
+                            type="checkbox" 
+                            id={data.id} 
+                            name={data.id}
+                            onChange={ likeCheck }
+                            data-checked={ checkState } 
+                            value="좋아요체크" />
+
+                    <label className={classes.label} htmlFor={data.id}>
+                        <input className={classes.like_button} type="button"></input>  
+                        <span style={styleArr[like]}>LIKE ❤</span>
+                    </label>
+                    <Link to={`/more/&{data.id}` }><span className={classes.more}>상세보기</span></Link>
                 
-            {/* <button type='button' onClick={likePlus} className='button'>+1</button>
-            <button type='button' onClick={likeMinus} className='button'>-1</button> */}
-            <button type='button' onClick={fnCheck} className={classes.button}> <span style={colorArr[like]}>❤</span></button>
-            {/* <span>{number}</span> */}
-            
-                
-                <a className={classes.view} href={data.detailLink}>상세보기</a>
             </div>
         </li>
     )
