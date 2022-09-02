@@ -1,13 +1,17 @@
 package dev.medi.meditime.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.Date;
+
 @Entity
+@Getter @Setter
+@Builder
 @Table(name="USERS")
 @DynamicUpdate
 public class User {
@@ -16,22 +20,22 @@ public class User {
     @Column(name="user_id")
     private String userId;
     
-    @Column(name="user_pw")
+    @Column(name="user_pw", nullable = false)
     private String userPw;
 
-    @Column(name="user_email")
+    @Column(name="user_email", nullable = false)
     private String userEmail;
 
-    @Column(name="user_born")
+    @Column(name="user_born", nullable = false)
     private String userBorn;
 
-    @Column(name="user_gender")
+    @Column(name="user_gender", nullable = false)
     private String userGender;
 
-    @Column(name="reg_date")
-    private String regDate;
+    @Column(name="reg_date", nullable = false)
+    private Date regDate;
 
-    public User() {};
+    public User() {}
 
     public User(String userId) {
         this.userId = userId;
@@ -40,41 +44,14 @@ public class User {
     public void updateId(String userId) {
         this.userId = userId;
     }
-    
-    public String getUserId() {
-        return userId;
-    }
-    public void setUserId(String userId) {
+
+    @Builder
+    public User(String userId, String userPw, String userEmail, String userBorn, String userGender, Date regDate) {
         this.userId = userId;
-    }
-    public String getUserPw() {
-        return userPw;
-    }
-    public void setUserPw(String userPw) {
         this.userPw = userPw;
-    }
-    public String getUserEmail() {
-        return userEmail;
-    }
-    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
-    }
-    public String getUserBorn() {
-        return userBorn;
-    }
-    public void setUserBorn(String userBorn) {
         this.userBorn = userBorn;
-    }
-    public String getUserGender() {
-        return userGender;
-    }
-    public void setUserGender(String userGender) {
         this.userGender = userGender;
-    }
-    public String getRegDate() {
-        return regDate;
-    }
-    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 }

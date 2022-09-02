@@ -1,14 +1,19 @@
 package dev.medi.meditime.model.dto;
 
 import dev.medi.meditime.model.entity.User;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Date;
+
+@Getter @Setter
 public class UserDTO {
     private String userId;
     private String userPw;
     private String userEmail;
     private String userBorn;
     private String userGender;
-    private String regDate;
+    private Date regDate;
 
     public UserDTO(User user) {
         this.userId = user.getUserId();
@@ -30,52 +35,12 @@ public class UserDTO {
         this.userPw = userPw;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
+    public UserDTO(String userId, String userPw, String userEmail, String userBorn, String userGender, Date regDate) {
         this.userId = userId;
-    }
-
-    public String getUserPw() {
-        return userPw;
-    }
-
-    public void setUserPw(String userPw) {
         this.userPw = userPw;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
-    }
-
-    public String getUserBorn() {
-        return userBorn;
-    }
-
-    public void setUserBorn(String userBorn) {
         this.userBorn = userBorn;
-    }
-
-    public String getUserGender() {
-        return userGender;
-    }
-
-    public void setUserGender(String userGender) {
         this.userGender = userGender;
-    }
-
-    public String getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
-    
 }

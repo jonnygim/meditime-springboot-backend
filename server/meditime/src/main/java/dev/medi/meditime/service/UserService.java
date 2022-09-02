@@ -11,15 +11,17 @@ public interface UserService {
     void insertUser(UserDTO userDTO);
 
     // 회원 정보 수정
-    void updateUser(UserDTO userDTO);
+    void updateUserId(UserDTO userDTO);
+
+    void updateUserPassword(UserDTO userDTO);
 
     // 회원 탈퇴
     void deleteUser(UserDTO userDTO);
 
     // 회원 정보 조회
-    UserDTO selectUser(UserDTO userDTO);
+    UserDTO selectUser(String userId);
 
     // 회원 아이디 중복 확인
-    Boolean validateUserId(UserDTO userDTO);
+    Boolean validateUserId(String userId);
 
 }

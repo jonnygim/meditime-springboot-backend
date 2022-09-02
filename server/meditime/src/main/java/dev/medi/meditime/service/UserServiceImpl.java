@@ -20,9 +20,6 @@ public class UserServiceImpl implements UserService {
     public void insertUser(UserDTO userDTO) {
 
         User user = new User();
-
-        System.out.println("service 에 들어왔다 " + userDTO.getUserId());
-        System.out.println("service 에 들어왔다 " + userDTO.getUserEmail());
         
         user.setUserId(userDTO.getUserId());
         user.setUserPw(userDTO.getUserPw());
@@ -35,21 +32,41 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    // 회원 정보 업데이트
+    // 닉네임 변경
     @Override
-    public void updateUser(UserDTO userDTO) {
+    public void updateUserId(UserDTO userDTO) {
+        System.out.println(userDTO.getUserId());
 
-        userRepository.findByUpdate(userDTO.getUserId(), userDTO.getUserPw());
-        
+        User user = new User();
+        if(userRepository.findByUserEmail(userDTO.getUserEmail()) != null) {
+            user = User.builder()
+                    .userEmail(userDTO.getUserEmail())
+                    .userId(userDTO.getUserId())
+                    .regDate(userDTO.getRegDate())
+                    .build();
+        }
+
+        userRepository.save(user);
+    }
+
+    // 비밀번호 변경
+    @Override
+    public void updateUserPassword(UserDTO userDTO){
+
+        User userSave = userRepository.findByUserEmail(userDTO.getUserEmail());
+
+        userSave.setUserPw(userDTO.getUserPw());
+
+        userRepository.save(userSave);
     }
 
     // 회원 정보 조회
     @Override
-    public UserDTO selectUser(UserDTO userDTO) {
-        System.out.println("받아온 User 아이디 : " + userDTO.getUserId());
+    public UserDTO selectUser(String userId) {
+        System.out.println("받아온 User 아이디 : " + userId);
 
         // DB  
-        User user = userRepository.findByUserId(userDTO.getUserId());
+        User user = userRepository.findByUserId(userId);
 
         UserDTO sUserDTO = new UserDTO();
 
@@ -58,19 +75,20 @@ public class UserServiceImpl implements UserService {
         sUserDTO.setUserEmail(user.getUserEmail());
         sUserDTO.setUserBorn(user.getUserBorn());
         sUserDTO.setUserGender(user.getUserGender());
+        sUserDTO.setRegDate(user.getRegDate());
         
         return sUserDTO;
 
     }
 
     @Override
-    public Boolean validateUserId(UserDTO userDTO) {
-        System.out.println("받아온 아이디" + userDTO.getUserId());
+    public Boolean validateUserId(String userId) {
+        System.out.println("받아온 아이디" + userId);
     
         try {
-            User dbUserId = userRepository.findByUserId(userDTO.getUserId());
+            User dbUserId = userRepository.findByUserId(userId);
 
-            if (dbUserId.getUserId().equals(userDTO.getUserId()) && !userDTO.getUserId().isEmpty()) {
+            if (dbUserId.getUserId().equals(userId) && !userId.isEmpty()) {
                 System.out.println("DB아이디 : " + dbUserId.getUserId());
 
                 return true;

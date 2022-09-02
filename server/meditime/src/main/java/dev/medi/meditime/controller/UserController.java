@@ -1,66 +1,64 @@
 package dev.medi.meditime.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import dev.medi.meditime.model.dto.UserDTO;
 import dev.medi.meditime.service.UserService;
 
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
 public class UserController {
-    
+
+    @Autowired
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    // 로그인
+    @PostMapping
+    public Boolean userLogin(@RequestBody UserDTO userDTO) {
+        return userService.loginUser(userDTO);
     }
 
     // 회원가입
     @PostMapping("/signup")
     public void insertUser(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
         userService.insertUser(userDTO);
     }
 
+    // 아이디 중복 검사
+    @GetMapping("/validate/{userId}")
+    public Boolean validateUserId(@PathVariable String userId) {
+        return userService.validateUserId(userId);
+    }
+
     // 회원 정보 조회
-    @PostMapping("/userinfo")
-    public UserDTO selectUser(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
-        
-        return userService.selectUser(userDTO);
+    @GetMapping("{userId}")
+    public UserDTO selectUser(@PathVariable String userId) {
+        return userService.selectUser(userId);
     }
 
-    // 로그인
-    @PostMapping("/login")
-    public Boolean userLogin(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
-
-        return userService.loginUser(userDTO);
+    // 닉네임 변경
+    @PatchMapping("/userId")
+    public void updateUserId(@RequestBody UserDTO userDTO) throws Exception {
+        System.out.println(userDTO.getUserId());
+        userService.updateUserId(userDTO);
     }
 
-    // 회원정보 수정
-    @PostMapping("/update")
-    public void updateUser(@RequestBody UserDTO userDTO) {
-        userService.updateUser(userDTO);
+    // 비밀번호 변경
+    @PatchMapping("/password")
+    public void updateUserPassword(@RequestBody UserDTO userDTO) throws Exception {
+        userService.updateUserPassword(userDTO);
     }
 
     // 회원탈퇴
-    @PostMapping("/delete")
+    @DeleteMapping
     public void deleteUser(@RequestBody UserDTO userDTO) {
         userService.deleteUser(userDTO);
     }
 
-    // 아이디 중복 검사
-    @PostMapping("/validate")
-    public Boolean validateUserId(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
-        return userService.validateUserId(userDTO);
-    }
+
 
 }
