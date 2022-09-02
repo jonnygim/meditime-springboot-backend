@@ -18,9 +18,9 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원 정보 조회
-    @GetMapping(path = "{userId}")
-    public MemberDTO getMember(@PathVariable String userId) {
-        return memberService.selectUser(userId);
+    @GetMapping(path = "/{userId}")
+    public MemberDTO getMember(@PathVariable Integer memberId) {
+        return memberService.getMember(memberId);
     }
 
     // 로그인

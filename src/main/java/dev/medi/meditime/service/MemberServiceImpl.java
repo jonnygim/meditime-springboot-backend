@@ -1,25 +1,46 @@
 package dev.medi.meditime.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.medi.meditime.model.dto.MemberDTO;
-import dev.medi.meditime.model.entity.User;
+import dev.medi.meditime.model.entity.Member;
 import dev.medi.meditime.repository.MemberRepository;
 
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     
     @Autowired
     private MemberRepository memberRepository;
 
+    // 회원 정보 조회
+    @Override
+    public MemberDTO getMember(Integer memberId) {
+
+        Member member = memberRepository.findByMemberId(memberId);
+
+        MemberDTO result =  MemberDTO.builder()
+                .memberId(member.getMemberId())
+                .email(member.getEmail())
+                .born(member.getBorn())
+                .gender(member.getGender())
+                .build();
+
+        return result;
+
+    }
+
     // 회원가입
     @Override
     public void insertUser(MemberDTO memberDTO) {
 
-        User user = new User();
+        Member user = new Member();
         
         user.setUserId(memberDTO.getUserId());
         user.setUserPw(memberDTO.getUserPw());
@@ -37,9 +58,9 @@ public class MemberServiceImpl implements MemberService {
     public void updateUserId(MemberDTO memberDTO) {
         System.out.println(memberDTO.getUserId());
 
-        User user = new User();
+        Member user = new Member();
         if(memberRepository.findByUserEmail(memberDTO.getUserEmail()) != null) {
-            user = User.builder()
+            user = Member.builder()
                     .userEmail(memberDTO.getUserEmail())
                     .userId(memberDTO.getUserId())
                     .regDate(memberDTO.getRegDate())
@@ -53,40 +74,21 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void updateUserPassword(MemberDTO memberDTO){
 
-        User userSave = memberRepository.findByUserEmail(memberDTO.getUserEmail());
+        Member userSave = memberRepository.findByUserEmail(memberDTO.getUserEmail());
 
         userSave.setUserPw(memberDTO.getUserPw());
 
         memberRepository.save(userSave);
     }
 
-    // 회원 정보 조회
-    @Override
-    public MemberDTO selectUser(String userId) {
-        System.out.println("받아온 User 아이디 : " + userId);
 
-        // DB  
-        User user = memberRepository.findByUserId(userId);
-
-        MemberDTO sMemberDTO = new MemberDTO();
-
-        sMemberDTO.setUserId(user.getUserId());
-        sMemberDTO.setUserPw(user.getUserPw());
-        sMemberDTO.setUserEmail(user.getUserEmail());
-        sMemberDTO.setUserBorn(user.getUserBorn());
-        sMemberDTO.setUserGender(user.getUserGender());
-        sMemberDTO.setRegDate(user.getRegDate());
-        
-        return sMemberDTO;
-
-    }
 
     @Override
     public Boolean validateUserId(String userId) {
         System.out.println("받아온 아이디" + userId);
     
         try {
-            User dbUserId = memberRepository.findByUserId(userId);
+            Member dbUserId = memberRepository.findByUserId(userId);
 
             if (dbUserId.getUserId().equals(userId) && !userId.isEmpty()) {
                 System.out.println("DB아이디 : " + dbUserId.getUserId());
@@ -112,7 +114,7 @@ public class MemberServiceImpl implements MemberService {
         
         // repo 값 가져오기
         try {
-            User user = memberRepository.findByUserId(memberDTO.getUserId());
+            Member user = memberRepository.findByUserId(memberDTO.getUserId());
             System.out.println(memberDTO.getUserId() + "유저 비밀번호" + user.getUserPw());
 
             if(memberDTO.getUserPw().equals(user.getUserPw())) {
@@ -129,7 +131,7 @@ public class MemberServiceImpl implements MemberService {
     // 회원 탈퇴
     @Override
     public void deleteUser(MemberDTO memberDTO) {
-        Optional<User> user = memberRepository.findById(memberDTO.getUserId());
+        Optional<Member> user = memberRepository.findById(memberDTO.getUserId());
 
         user.ifPresent(selectUser ->{
             memberRepository.delete(selectUser);
