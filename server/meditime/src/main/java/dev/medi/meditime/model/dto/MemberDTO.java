@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Getter @Setter
-public class UserDTO {
+public class MemberDTO {
     private String userId;
     private String userPw;
     private String userEmail;
@@ -15,7 +15,7 @@ public class UserDTO {
     private String userGender;
     private Date regDate;
 
-    public UserDTO(User user) {
+    public MemberDTO(User user) {
         this.userId = user.getUserId();
         this.userPw = user.getUserPw();
         this.userEmail = user.getUserEmail();
@@ -24,18 +24,18 @@ public class UserDTO {
         this.regDate = user.getRegDate();
     }
 
-    public UserDTO() {};
+    public MemberDTO() {};
 
-    public UserDTO(String userId) {
+    public MemberDTO(String userId) {
         this.userId = userId;
     };
 
-    public UserDTO(String userId, String userPw) {
+    public MemberDTO(String userId, String userPw) {
         this.userId = userId;
         this.userPw = userPw;
     }
 
-    public UserDTO(String userId, String userPw, String userEmail, String userBorn, String userGender, Date regDate) {
+    public MemberDTO(String userId, String userPw, String userEmail, String userBorn, String userGender, Date regDate) {
         this.userId = userId;
         this.userPw = userPw;
         this.userEmail = userEmail;

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dev.medi.meditime.model.entity.User;
 
-public interface UserRepository extends JpaRepository<User, String>{
+public interface MemberRepository extends JpaRepository<User, String>{
 
     User findByUserEmail(String userEmail);
 
