@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import dev.medi.meditime.model.entity.User;
+import dev.medi.meditime.model.entity.Member;
 
-public interface MemberRepository extends JpaRepository<User, String>{
+public interface MemberRepository extends JpaRepository<Member, String>{
 
-    User findByUserEmail(String userEmail);
+    Member findByUserEmail(String userEmail);
 
-    User findByUserId(String userId);
+    Member findByMemberId(Integer memberId);
 
     @Transactional
     @Modifying
