@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
     // 회원 정보 조회
     @Override
-    public MemberDTO getMember(Integer memberId) {
+    public MemberDTO getMember(Long memberId) {
 
         Member member = memberRepository.findByMemberId(memberId);
 
@@ -34,6 +34,25 @@ public class MemberServiceImpl implements MemberService {
 
         return result;
 
+    }
+
+    // 로그인
+    @Override
+    public Boolean memberLogin(MemberDTO memberDTO) {
+
+        // repo 값 가져오기
+        try {
+            Member user = memberRepository.findByMemberId(memberDTO.getMemberId());
+
+            if(memberDTO.getPassword().equals(user.getPassword())) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+            System.out.println("error : " + e);
+        }
+
+        return false;
     }
 
     // 회원가입
@@ -104,29 +123,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
-    // 로그인
-    @Override
-    public Boolean loginUser(MemberDTO memberDTO) {
-        // 받아온 id/ pw 확인
-        System.out.println(memberDTO.getUserId());
-        System.out.println(memberDTO.getUserPw());
-        // System.out.println(userDTO.getUserEmail()); 넘어 온 값이 없으니 null
-        
-        // repo 값 가져오기
-        try {
-            Member user = memberRepository.findByUserId(memberDTO.getUserId());
-            System.out.println(memberDTO.getUserId() + "유저 비밀번호" + user.getUserPw());
 
-            if(memberDTO.getUserPw().equals(user.getUserPw())) {
-                return true;
-            } 
-        } catch (Exception e) {
-            e.getStackTrace();
-            System.out.println("error : " + e);
-        }
-        
-        return false;
-    }
 
     // 회원 탈퇴
     @Override

@@ -5,10 +5,10 @@ import dev.medi.meditime.model.dto.MemberDTO;
 public interface MemberService {
 
     // 회원 정보 조회
-    MemberDTO getMember(Integer memberId);
+    MemberDTO getMember(Long memberId);
 
     // 로그인
-    Boolean loginUser(MemberDTO memberDTO);
+    Boolean memberLogin(MemberDTO memberDTO);
 
     // 회원 가입
     void insertUser(MemberDTO memberDTO);
