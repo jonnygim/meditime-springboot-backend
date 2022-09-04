@@ -12,7 +12,7 @@ public interface MemberRepository extends JpaRepository<Member, String>{
 
     Member findByUserEmail(String userEmail);
 
-    Member findByMemberId(Integer memberId);
+    Member findByMemberId(Long memberId);
 
     @Transactional
     @Modifying
