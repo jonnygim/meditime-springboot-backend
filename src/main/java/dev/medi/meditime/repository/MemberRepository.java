@@ -8,15 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dev.medi.meditime.model.entity.Member;
 
+import java.util.Optional;
+
 public interface MemberRepository extends JpaRepository<Member, String>{
 
-    Member findByUserEmail(String userEmail);
+//    Member findByUserEmail(String userEmail);
 
-    Member findByMemberId(Long memberId);
+    Optional<Member> findByMemberId(Long memberId);
 
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.userPw = :userPw WHERE u.userId = :userId")
-    void findByUpdate(@Param("userId") String userId, @Param("userPw") String userPw);
-    
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User u SET u.userPw = :userPw WHERE u.userId = :userId")
+//    void findByUpdate(@Param("userId") String userId, @Param("userPw") String userPw);
+//
 }

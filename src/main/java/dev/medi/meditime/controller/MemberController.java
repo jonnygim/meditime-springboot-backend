@@ -11,7 +11,7 @@ import dev.medi.meditime.service.MemberService;
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/members")
+@RequestMapping("/api/members")
 public class MemberController {
 
     @Autowired
@@ -31,8 +31,8 @@ public class MemberController {
 
     // 회원가입
     @PostMapping("/signup")
-    public void memberInsert(@RequestBody MemberDTO memberDTO) {
-        memberService.insertUser(memberDTO);
+    public void signup(@RequestBody MemberDTO memberDTO) {
+        memberService.signup(memberDTO);
     }
 
     // 아이디 중복 검사
@@ -44,20 +44,17 @@ public class MemberController {
 
 
     // 닉네임 변경
-    @PatchMapping("/userId")
-    public void updateMemberId(@RequestBody MemberDTO memberDTO) throws Exception {
-        System.out.println(memberDTO.getUserId());
-        memberService.updateUserId(memberDTO);
-    }
+//    @PatchMapping("/userId")
+//    public void updateMemberId(@RequestBody MemberDTO memberDTO) throws Exception {
+//        System.out.println(memberDTO.getMemberId());
+//        memberService.updateUserId(memberDTO);
+//    }
 
     // 비밀번호 변경
-    @PatchMapping("/password")
-    public void updatePassword(@RequestBody MemberDTO memberDTO) throws Exception {
-        memberService.updateUserPassword(memberDTO);
-    }
+//
 
     // 회원탈퇴
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deleteMember(@RequestBody MemberDTO memberDTO) {
         memberService.deleteUser(memberDTO);
     }

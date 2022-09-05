@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -15,7 +16,7 @@ public class MemberDTO {
     private String password;
     private String born;
     private String gender;
-    private Date regDate;
+    private LocalDate regDate;
 
     public MemberDTO() {}
 
@@ -29,7 +30,7 @@ public class MemberDTO {
     }
 
     @Builder
-    public MemberDTO(Long memberId, String email, String password, String born, String gender, Date regDate) {
+    public MemberDTO(Long memberId, String email, String password, String born, String gender, LocalDate regDate) {
         this.memberId = memberId;
         this.email = email;
         this.password = password;

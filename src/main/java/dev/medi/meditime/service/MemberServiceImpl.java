@@ -1,5 +1,6 @@
 package dev.medi.meditime.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDTO getMember(Long memberId) {
 
-        Member member = memberRepository.findByMemberId(memberId);
+        Member member = memberRepository.findByMemberId(memberId).orElseThrow(IllegalArgumentException::new);
 
         MemberDTO result =  MemberDTO.builder()
                 .memberId(member.getMemberId())
@@ -42,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 
         // repo 값 가져오기
         try {
-            Member user = memberRepository.findByMemberId(memberDTO.getMemberId());
+            Member user = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(IllegalArgumentException::new);
 
             if(memberDTO.getPassword().equals(user.getPassword())) {
                 return true;
@@ -57,70 +58,61 @@ public class MemberServiceImpl implements MemberService {
 
     // 회원가입
     @Override
-    public void insertUser(MemberDTO memberDTO) {
+    public void signup(MemberDTO memberDTO) {
 
-        Member user = new Member();
-        
-        user.setUserId(memberDTO.getUserId());
-        user.setUserPw(memberDTO.getUserPw());
-        user.setUserEmail(memberDTO.getUserEmail());
-        user.setUserBorn(memberDTO.getUserBorn());
-        user.setUserGender(memberDTO.getUserGender());
-        user.setRegDate(memberDTO.getRegDate());
-
-        memberRepository.save(user);
+        Member newMember = new Member(null, memberDTO.getEmail(), memberDTO.getPassword(), memberDTO.getBorn(), memberDTO.getGender(), LocalDate.now());
+        memberRepository.save(newMember);
 
     }
 
     // 닉네임 변경
-    @Override
-    public void updateUserId(MemberDTO memberDTO) {
-        System.out.println(memberDTO.getUserId());
-
-        Member user = new Member();
-        if(memberRepository.findByUserEmail(memberDTO.getUserEmail()) != null) {
-            user = Member.builder()
-                    .userEmail(memberDTO.getUserEmail())
-                    .userId(memberDTO.getUserId())
-                    .regDate(memberDTO.getRegDate())
-                    .build();
-        }
-
-        memberRepository.save(user);
-    }
+//    @Override
+//    public void updateUserId(MemberDTO memberDTO) {
+//
+//        Member user = new Member();
+//        if(memberRepository.findByUserEmail(memberDTO.getEmail()) != null) {
+//            user = Member.builder()
+//                    .email(memberDTO.getEmail())
+//                    .memberId(memberDTO.getMemberId())
+//                    .regDate(LocalDate.now())
+//                    .build();
+//        }
+//
+//        memberRepository.save(user);
+//    }
 
     // 비밀번호 변경
-    @Override
-    public void updateUserPassword(MemberDTO memberDTO){
+//    @Override
+//    public void updateUserPassword(MemberDTO memberDTO){
+//
+//        Member userSave = memberRepository.findByUserEmail(memberDTO.getEmail());
+//
+//        //userSave.setUserPw(memberDTO.getUserPw());
+//
+//        memberRepository.save(userSave);
+//    }
 
-        Member userSave = memberRepository.findByUserEmail(memberDTO.getUserEmail());
-
-        userSave.setUserPw(memberDTO.getUserPw());
-
-        memberRepository.save(userSave);
-    }
 
 
-
-    @Override
-    public Boolean validateUserId(String userId) {
-        System.out.println("받아온 아이디" + userId);
-    
-        try {
-            Member dbUserId = memberRepository.findByUserId(userId);
-
-            if (dbUserId.getUserId().equals(userId) && !userId.isEmpty()) {
-                System.out.println("DB아이디 : " + dbUserId.getUserId());
-
-                return true;
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-            System.out.println("error: " + e); // 다른 항목들 null 값이라서 
-        }
-
-        return false;
-    }
+//    @Override
+//    public Boolean validateUserId(String userId) {
+//        System.out.println("받아온 아이디" + userId);
+//
+//        try {
+//            Member dbUserId = memberRepository.findByMemberId(userId);
+//
+//            if (dbUserId.getUserId().equals(userId) && !userId.isEmpty()) {
+//                System.out.println("DB아이디 : " + dbUserId.getUserId());
+//
+//                return true;
+//            }
+//        } catch (Exception e) {
+//            e.getStackTrace();
+//            System.out.println("error: " + e); // 다른 항목들 null 값이라서
+//        }
+//
+//        return false;
+//    }
 
 
 
@@ -128,11 +120,8 @@ public class MemberServiceImpl implements MemberService {
     // 회원 탈퇴
     @Override
     public void deleteUser(MemberDTO memberDTO) {
-        Optional<Member> user = memberRepository.findById(memberDTO.getUserId());
-
-        user.ifPresent(selectUser ->{
-            memberRepository.delete(selectUser);
-        });
+        Member user = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(IllegalArgumentException::new);
+        memberRepository.delete(user);
     }
 }
 
