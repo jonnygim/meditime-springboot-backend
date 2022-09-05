@@ -2,15 +2,19 @@ package dev.medi.meditime.model.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Getter
+@Builder
 @Table(name="USERS")
 @DynamicUpdate
 public class Member {
@@ -33,9 +37,19 @@ public class Member {
     private String gender;
 
     @Column(name="reg_date", nullable = false)
-    private Date regDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private LocalDate regDate;
 
     public Member() {}
 
 
+    @Builder
+    public Member(Long memberId, String email, String password, String born, String gender, LocalDate regDate) {
+        this.memberId = memberId;
+        this.email = email;
+        this.password = password;
+        this.born = born;
+        this.gender = gender;
+        this.regDate = regDate;
+    }
 }

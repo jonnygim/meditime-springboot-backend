@@ -11,12 +11,12 @@ public interface MemberService {
     Boolean memberLogin(MemberDTO memberDTO);
 
     // 회원 가입
-    void insertUser(MemberDTO memberDTO);
+    void signup(MemberDTO memberDTO);
 
     // 회원 정보 수정
-    void updateUserId(MemberDTO memberDTO);
-
-    void updateUserPassword(MemberDTO memberDTO);
+//    void updateUserId(MemberDTO memberDTO);
+//
+//    void updateUserPassword(MemberDTO memberDTO);
 
     // 회원 탈퇴
     void deleteUser(MemberDTO memberDTO);
@@ -24,6 +24,6 @@ public interface MemberService {
 
 
     // 회원 아이디 중복 확인
-    Boolean validateUserId(String userId);
+//    Boolean validateUserId(String userId);
 
 }
