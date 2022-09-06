@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Builder
-@Table(name="USERS")
+@Table(name="MEMBERS")
 @DynamicUpdate
 public class Member {
 
@@ -29,6 +29,9 @@ public class Member {
     
     @Column(name="password", nullable = false)
     private String password;
+
+    @Column(name="name", nullable = false)
+    private String name;
 
     @Column(name="born", nullable = false)
     private String born;
@@ -44,10 +47,11 @@ public class Member {
 
 
     @Builder
-    public Member(Long memberId, String email, String password, String born, String gender, LocalDate regDate) {
+    public Member(Long memberId, String email, String password, String name, String born, String gender, LocalDate regDate) {
         this.memberId = memberId;
         this.email = email;
         this.password = password;
+        this.name = name;
         this.born = born;
         this.gender = gender;
         this.regDate = regDate;
