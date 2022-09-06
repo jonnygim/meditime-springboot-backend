@@ -11,10 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -27,9 +25,6 @@ public class MemberServiceTest {
 
     @Autowired
     private MemberService memberService;
-
-    @Autowired
-    private EntityManager entityManager;
 
     @AfterEach
     void clean() {
