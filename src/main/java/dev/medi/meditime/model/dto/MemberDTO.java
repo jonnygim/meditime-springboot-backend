@@ -14,6 +14,7 @@ public class MemberDTO {
     private Long memberId;
     private String email;
     private String password;
+    private String name;
     private String born;
     private String gender;
     private LocalDate regDate;
@@ -24,16 +25,18 @@ public class MemberDTO {
         this.memberId = m.getMemberId();
         this.email = m.getEmail();
         this.password = m.getPassword();
+        this.name = m.getName();
         this.born = m.getBorn();
         this.gender = m.getGender();
         this.regDate = m.getRegDate();
     }
 
     @Builder
-    public MemberDTO(Long memberId, String email, String password, String born, String gender, LocalDate regDate) {
+    public MemberDTO(Long memberId, String email, String password, String name, String born, String gender, LocalDate regDate) {
         this.memberId = memberId;
         this.email = email;
         this.password = password;
+        this.name = name;
         this.born = born;
         this.gender = gender;
         this.regDate = regDate;

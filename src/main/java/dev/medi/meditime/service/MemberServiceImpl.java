@@ -22,13 +22,14 @@ public class MemberServiceImpl implements MemberService {
 
     // 회원 정보 조회
     @Override
-    public MemberDTO getMember(Long memberId) {
+    public MemberDTO getMember(String name) {
 
-        Member member = memberRepository.findByMemberId(memberId).orElseThrow(IllegalArgumentException::new);
+        Member member = memberRepository.findByName(name).orElseThrow(IllegalArgumentException::new);
 
         MemberDTO result =  MemberDTO.builder()
                 .memberId(member.getMemberId())
                 .email(member.getEmail())
+                .name(member.getName())
                 .born(member.getBorn())
                 .gender(member.getGender())
                 .build();
@@ -43,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
 
         // repo 값 가져오기
         try {
-            Member user = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(IllegalArgumentException::new);
+            Member user = memberRepository.findByName(memberDTO.getName()).orElseThrow(IllegalArgumentException::new);
 
             if(memberDTO.getPassword().equals(user.getPassword())) {
                 return true;
@@ -60,7 +61,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void signup(MemberDTO memberDTO) {
 
-        Member newMember = new Member(null, memberDTO.getEmail(), memberDTO.getPassword(), memberDTO.getBorn(), memberDTO.getGender(), LocalDate.now());
+        Member newMember = new Member(memberDTO.getMemberId(), memberDTO.getEmail(), memberDTO.getPassword(), memberDTO.getName(), memberDTO.getBorn(), memberDTO.getGender(), LocalDate.now());
         memberRepository.save(newMember);
 
     }
@@ -120,7 +121,7 @@ public class MemberServiceImpl implements MemberService {
     // 회원 탈퇴
     @Override
     public void deleteUser(MemberDTO memberDTO) {
-        Member user = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(IllegalArgumentException::new);
+        Member user = memberRepository.findByName(memberDTO.getName()).orElseThrow(IllegalArgumentException::new);
         memberRepository.delete(user);
     }
 }
