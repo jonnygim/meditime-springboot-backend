@@ -11,10 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -27,9 +25,6 @@ public class MemberServiceTest {
 
     @Autowired
     private MemberService memberService;
-
-    @Autowired
-    private EntityManager entityManager;
 
     @AfterEach
     void clean() {
@@ -64,15 +59,28 @@ public class MemberServiceTest {
     }
 
     @Test
+    @DisplayName("멤버 조회가 정상 동작한다")
     void getMemberTest() {
         // given
-        memberRepository.save(new Member(null, "jonny@gmail.com", "12345", "jonny", "1997", "M", LocalDate.now()));
+        memberRepository.save(new Member(1L, "jonny@gmail.com", "12345", "jonny", "1997", "M", LocalDate.now()));
 
         // when
-        MemberDTO memberDTO = memberService.getMember("jonny");
+        MemberDTO memberDTO = memberService.getMember(1L);
 
         // then
         assertThat(memberDTO).extracting("email");
+    }
+
+    @Test
+    @DisplayName("멤버 삭제가 정상 동작한다")
+    void deleteMemberTest() {
+        // given
+        memberRepository.save(new Member(1L, "jonny@gmail.com", "12345", "jonny", "1997", "M", LocalDate.now()));
+
+        // when
+        memberService.deleteMember(1L);
+
+        // then
     }
 
 

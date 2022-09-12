@@ -45,6 +45,10 @@ public class Member {
 
     public Member() {}
 
+    public void updateName(String name) {
+        this.name = name;
+    }
+
 
     @Builder
     public Member(Long memberId, String email, String password, String name, String born, String gender, LocalDate regDate) {

@@ -3,6 +3,8 @@ package dev.medi.meditime.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import dev.medi.meditime.model.dto.MemberDTO;
@@ -17,23 +19,25 @@ public class MemberController {
     @Autowired
     private final MemberService memberService;
 
-    // 회원 정보 조회
-    @GetMapping(path = "/{name}")
-    public MemberDTO getMember(@PathVariable String name) {
-        return memberService.getMember(name);
-    }
-
-    // 로그인
-    @PostMapping
-    public Boolean memberLogin(@RequestBody MemberDTO memberDTO) {
-        return memberService.memberLogin(memberDTO);
-    }
-
     // 회원가입
     @PostMapping("/signup")
     public void signup(@RequestBody MemberDTO memberDTO) {
         memberService.signup(memberDTO);
     }
+
+    // 회원 정보 조회
+    @GetMapping(path = "/{id}")
+    public MemberDTO getMember(@PathVariable Long memberId) {
+        return memberService.getMember(memberId);
+    }
+
+    // 닉네임 변경
+    @PatchMapping("")
+    public void updateMemberName(@RequestBody MemberDTO memberDTO) {
+        memberService.updateMemberName(memberDTO);
+    }
+
+
 
     // 아이디 중복 검사
 //    @GetMapping("/validate/{userId}")
@@ -43,20 +47,15 @@ public class MemberController {
 
 
 
-    // 닉네임 변경
-//    @PatchMapping("/userId")
-//    public void updateMemberId(@RequestBody MemberDTO memberDTO) throws Exception {
-//        System.out.println(memberDTO.getMemberId());
-//        memberService.updateUserId(memberDTO);
-//    }
+
 
     // 비밀번호 변경
 //
 
     // 회원탈퇴
     @DeleteMapping("/{id}")
-    public void deleteMember(@RequestBody MemberDTO memberDTO) {
-        memberService.deleteUser(memberDTO);
+    public void deleteMember(@PathVariable Long memberId) {
+        memberService.deleteMember(memberId);
     }
 
 
