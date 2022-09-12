@@ -20,11 +20,20 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
+    // 회원가입
+    @Override
+    public void signup(MemberDTO memberDTO) {
+
+        Member newMember = new Member(memberDTO.getMemberId(), memberDTO.getEmail(), memberDTO.getPassword(), memberDTO.getName(), memberDTO.getBorn(), memberDTO.getGender(), LocalDate.now());
+        memberRepository.save(newMember);
+
+    }
+
     // 회원 정보 조회
     @Override
-    public MemberDTO getMember(String name) {
+    public MemberDTO getMember(Long memberId) {
 
-        Member member = memberRepository.findByName(name).orElseThrow(IllegalArgumentException::new);
+        Member member = memberRepository.findByMemberId(memberId).orElseThrow(IllegalArgumentException::new);
 
         MemberDTO result =  MemberDTO.builder()
                 .memberId(member.getMemberId())
@@ -38,49 +47,14 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
-    // 로그인
-    @Override
-    public Boolean memberLogin(MemberDTO memberDTO) {
-
-        // repo 값 가져오기
-        try {
-            Member user = memberRepository.findByName(memberDTO.getName()).orElseThrow(IllegalArgumentException::new);
-
-            if(memberDTO.getPassword().equals(user.getPassword())) {
-                return true;
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-            System.out.println("error : " + e);
-        }
-
-        return false;
-    }
-
-    // 회원가입
-    @Override
-    public void signup(MemberDTO memberDTO) {
-
-        Member newMember = new Member(memberDTO.getMemberId(), memberDTO.getEmail(), memberDTO.getPassword(), memberDTO.getName(), memberDTO.getBorn(), memberDTO.getGender(), LocalDate.now());
-        memberRepository.save(newMember);
-
-    }
-
     // 닉네임 변경
-//    @Override
-//    public void updateUserId(MemberDTO memberDTO) {
-//
-//        Member user = new Member();
-//        if(memberRepository.findByUserEmail(memberDTO.getEmail()) != null) {
-//            user = Member.builder()
-//                    .email(memberDTO.getEmail())
-//                    .memberId(memberDTO.getMemberId())
-//                    .regDate(LocalDate.now())
-//                    .build();
-//        }
-//
-//        memberRepository.save(user);
-//    }
+    @Override
+    public void updateMemberName(MemberDTO memberDTO) {
+
+       Member member = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(IllegalArgumentException::new);
+
+       member.updateName(memberDTO.getName());
+    }
 
     // 비밀번호 변경
 //    @Override
@@ -120,8 +94,8 @@ public class MemberServiceImpl implements MemberService {
 
     // 회원 탈퇴
     @Override
-    public void deleteUser(MemberDTO memberDTO) {
-        Member user = memberRepository.findByName(memberDTO.getName()).orElseThrow(IllegalArgumentException::new);
+    public void deleteMember(Long memberId) {
+        Member user = memberRepository.findByMemberId(memberId).orElseThrow(IllegalArgumentException::new);
         memberRepository.delete(user);
     }
 }

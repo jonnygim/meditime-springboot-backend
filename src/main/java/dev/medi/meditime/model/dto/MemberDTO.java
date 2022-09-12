@@ -21,6 +21,11 @@ public class MemberDTO {
 
     public MemberDTO() {}
 
+    public MemberDTO(Long memberId, String name) {
+        this.memberId = memberId;
+        this.name = name;
+    }
+
     public MemberDTO(Member m) {
         this.memberId = m.getMemberId();
         this.email = m.getEmail();
