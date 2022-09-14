@@ -9,7 +9,7 @@ public interface MemberService {
 
     // 회원 정보 조회
     MemberDTO getMember(Long memberId);
-    
+
     // 회원 정보 수정
     void updateMemberName(MemberDTO memberDTO);
 

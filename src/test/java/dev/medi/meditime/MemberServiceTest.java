@@ -37,7 +37,7 @@ public class MemberServiceTest {
 
         // given
         MemberDTO memberDTO = MemberDTO.builder()
-                .memberId(null)
+                .memberId(1L)
                 .email("jonny@gmail.com")
                 .password("1234")
                 .name("jonny")
@@ -81,6 +81,7 @@ public class MemberServiceTest {
         memberService.deleteMember(1L);
 
         // then
+        assertThat(memberRepository.findAll()).isEmpty();
     }
 
 
