@@ -27,13 +27,13 @@ public class MemberServiceTest {
     private MemberService memberService;
 
     @AfterEach
-    void clean() {
+    public void clean() {
         memberRepository.deleteAll();
     }
 
     @Test
     @DisplayName("회원 가입이 정상 동작한다.")
-    void signupTest() {
+    public void signupTest() {
 
         // given
         MemberDTO memberDTO = MemberDTO.builder()
@@ -60,7 +60,7 @@ public class MemberServiceTest {
 
     @Test
     @DisplayName("멤버 조회가 정상 동작한다")
-    void getMemberTest() {
+    public void getMemberTest() {
         // given
         memberRepository.save(new Member(1L, "jonny@gmail.com", "12345", "jonny", "1997", "M", LocalDate.now()));
 
@@ -72,8 +72,22 @@ public class MemberServiceTest {
     }
 
     @Test
+    @DisplayName("멤버 이름 수정이 정상 동작한다")
+    public void updateMemberNameTest() {
+        // given
+        Member savedMember = memberRepository.save(new Member(1L, "jonny@gmail.com", "12345", "jonny", "1997", "M", LocalDate.now()));
+
+        // when
+        memberService.updateMemberName(new MemberDTO(savedMember.getMemberId(), "gggg"));
+
+        // then
+        Member result = memberRepository.findAll().get(0);
+        assertThat(result.getName()).isEqualTo("gggg");
+    }
+
+    @Test
     @DisplayName("멤버 삭제가 정상 동작한다")
-    void deleteMemberTest() {
+    public void deleteMemberTest() {
         // given
         memberRepository.save(new Member(1L, "jonny@gmail.com", "12345", "jonny", "1997", "M", LocalDate.now()));
 
