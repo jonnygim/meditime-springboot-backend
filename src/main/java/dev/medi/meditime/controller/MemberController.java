@@ -37,19 +37,12 @@ public class MemberController {
         memberService.updateMemberName(memberDTO);
     }
 
-
+    // 비밀번호 변경
 
     // 아이디 중복 검사
 //    @GetMapping("/validate/{userId}")
 //    public Boolean validateMemberId(@PathVariable String userId) {
 //        return memberService.validateUserId(userId);
-//    }
-
-
-
-
-
-    // 비밀번호 변경
 //
 
     // 회원탈퇴

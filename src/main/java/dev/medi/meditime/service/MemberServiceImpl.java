@@ -54,6 +54,8 @@ public class MemberServiceImpl implements MemberService {
        Member member = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(IllegalArgumentException::new);
 
        member.updateName(memberDTO.getName());
+
+       memberRepository.save(member);
     }
 
     // 비밀번호 변경
