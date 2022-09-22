@@ -1,4 +1,4 @@
-package dev.medi.meditime.config;
+package dev.medi.meditime.config.security;
 
 import dev.medi.meditime.service.MemberService;
 import lombok.RequiredArgsConstructor;
