@@ -1,4 +1,4 @@
-package dev.medi.meditime.jwt;
+package dev.medi.meditime.config.jwt;
 
 
 import lombok.extern.slf4j.Slf4j;

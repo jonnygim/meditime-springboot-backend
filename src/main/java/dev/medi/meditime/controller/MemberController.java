@@ -1,6 +1,7 @@
 package dev.medi.meditime.controller;
 
 
+import dev.medi.meditime.config.jwt.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,10 @@ import dev.medi.meditime.service.MemberService;
 public class MemberController {
 
     @Autowired
-    private final MemberService memberService;
+    private MemberService memberService;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     // 회원가입
     @PostMapping("/signup")
