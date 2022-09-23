@@ -4,14 +4,17 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+
+import static dev.medi.meditime.config.jwt.JwtExpirationEnums.ACCESS_TOKEN_EXPIRATION_TIME;
+import static dev.medi.meditime.config.jwt.JwtExpirationEnums.REFRESH_TOKEN_EXPIRATION_TIME;
 
 @Slf4j
 @Component

@@ -1,6 +1,5 @@
 package dev.medi.meditime;
 
-import dev.medi.meditime.model.dto.MemberDTO;
 import dev.medi.meditime.model.entity.Member;
 import dev.medi.meditime.repository.MemberRepository;
 import dev.medi.meditime.service.MemberService;

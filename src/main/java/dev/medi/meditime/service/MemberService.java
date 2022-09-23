@@ -1,28 +1,17 @@
 package dev.medi.meditime.service;
 
-import dev.medi.meditime.model.dto.MemberDTO;
+import dev.medi.meditime.model.dto.*;
 
 public interface MemberService {
 
-    // 회원 가입
-    void signup(MemberDTO memberDTO);
+    void join(JoinDTO joinDTO);
+    void joinAdmin(JoinDTO joinDTO);
 
-    // 회원 정보 조회
-    MemberDTO getMember(Long memberId);
+    TokenDTO login(LoginDTO loginDTO);
+    void logout(TokenDTO tokenDTO, String username);
 
-    // 회원 정보 수정
-    void updateMemberName(MemberDTO memberDTO);
-
-//    void updateUserId(MemberDTO memberDTO);
-//
-//    void updateUserPassword(MemberDTO memberDTO);
-
-    // 회원 탈퇴
-    void deleteMember(Long memberId);
-
-
-
-    // 회원 아이디 중복 확인
-//    Boolean validateUserId(String userId);
+    MemberInfo getMemberInfo(String email);
+    
+    TokenDTO reissue(String refreshToken);
 
 }

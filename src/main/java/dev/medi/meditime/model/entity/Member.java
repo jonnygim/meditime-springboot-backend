@@ -3,18 +3,15 @@ package dev.medi.meditime.model.entity;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import dev.medi.meditime.model.dto.MemberDTO;
+import dev.medi.meditime.model.dto.JoinDTO;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 
+import static java.util.stream.Collectors.toList;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
@@ -24,8 +21,7 @@ import static javax.persistence.CascadeType.ALL;
 @DynamicUpdate
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="member_id")
     private Long memberId;
 
@@ -41,13 +37,8 @@ public class Member {
     @Column(name="name", nullable = false)
     private String nickName;
 
-    @Column(name="born", nullable = false)
-    private String born;
-
-    @Column(name="gender", nullable = false)
-    private String gender;
-
     @OneToMany(mappedBy = "member", cascade = ALL, orphanRemoval = true)
+    @Builder.Default
     private Set<Authority> authorities = new HashSet<>();
 
     @Column(name="reg_date", nullable = false)
@@ -56,31 +47,45 @@ public class Member {
 
     public Member() {}
 
-    public void updateName(String name) {
-        this.name = name;
-    }
-
-
-    @Builder
-    public Member(Long memberId, String email, String password, String name, String born, String gender, LocalDate regDate) {
+    public Member(Long memberId, String username, String email, String password, String nickName, Set<Authority> authorities, LocalDate regDate) {
         this.memberId = memberId;
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.name = name;
-        this.born = born;
-        this.gender = gender;
+        this.nickName = nickName;
+        this.authorities = authorities;
         this.regDate = regDate;
     }
 
-    public static Member ofUser(MemberDTO memberDTO) {
+    public static Member ofUser(JoinDTO joinDTO) {
         Member member = Member.builder()
                 .username(UUID.randomUUID().toString())
-                .email()
-                .password()
-                .nickName()
-                .born()
-                .gender()
+                .email(joinDTO.getEmail())
+                .password(joinDTO.getPassword())
+                .nickName(joinDTO.getNickname())
                 .build();
         member.addAuthority(Authority.ofUser(member));
+        return member;
+    }
+
+    public static Member ofAdmin(JoinDTO joinDTO) {
+        Member member = Member.builder()
+                .username(UUID.randomUUID().toString())
+                .email(joinDTO.getEmail())
+                .password(joinDTO.getPassword())
+                .nickName(joinDTO.getNickname())
+                .build();
+        member.addAuthority(Authority.ofAdmin(member));
+        return member;
+    }
+
+    private void addAuthority(Authority authority) {
+        authorities.add(authority);
+    }
+
+    public List<String> getRoles() {
+        return authorities.stream()
+                .map(Authority::getRole)
+                .collect(toList());
     }
 }
