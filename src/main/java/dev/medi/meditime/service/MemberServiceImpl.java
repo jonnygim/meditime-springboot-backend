@@ -1,14 +1,10 @@
 package dev.medi.meditime.service;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import dev.medi.meditime.config.cache.CacheKey;
 import dev.medi.meditime.config.jwt.JwtExpirationEnums;
-import dev.medi.meditime.config.jwt.JwtTokenUtil;
+import dev.medi.meditime.util.JwtTokenUtil;
 import dev.medi.meditime.model.LogoutAccessToken;
 import dev.medi.meditime.model.RefreshToken;
 import dev.medi.meditime.model.dto.*;
@@ -37,14 +33,21 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private RefreshTokenRedisRepository refreshTokenRedisRepository;
+
+    @Autowired
     private LogoutAccessTokenRedisRepository logoutAccessTokenRedisRepository;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
     public void join(JoinDTO joinDTO) {
+        System.out.println(joinDTO.getPassword());
+        System.out.println(passwordEncoder.encode(joinDTO.getPassword()));
        joinDTO.setPassword(passwordEncoder.encode(joinDTO.getPassword()));
        memberRepository.save(Member.ofUser(joinDTO));
     }

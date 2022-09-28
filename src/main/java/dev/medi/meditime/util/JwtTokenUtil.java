@@ -1,4 +1,4 @@
-package dev.medi.meditime.config.jwt;
+package dev.medi.meditime.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,5 +1,8 @@
 package dev.medi.meditime.config.jwt;
 
+import dev.medi.meditime.config.security.CustomUserDetailService;
+import dev.medi.meditime.repository.LogoutAccessTokenRedisRepository;
+import dev.medi.meditime.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,10 +34,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String accessToken = getToken(request);
         if (accessToken != null) {
             checkLogout(accessToken);
-            String username = jwtTokenUtil.getUserName(accessToken);
+            String username = jwtTokenUtil.getUsername(accessToken);
             if (username != null) {
                 UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
-                equalsUsernameRfromTokenAndUserDetails(userDetails.getUsername(), username);
+                equalsUsernameFromTokenAndUserDetails(userDetails.getUsername(), username);
                 validateAccessToken(accessToken, userDetails);
                 processSecurity(request, userDetails);
             }
@@ -52,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private void checkLogout(String accessToken) {
-        if (logoutAccessTokenRedisRepository.existById(accessToken)) {
+        if (logoutAccessTokenRedisRepository.existsById(accessToken)) {
             throw new IllegalArgumentException("이미 로그아웃된 회원입니다.");
         }
     }
