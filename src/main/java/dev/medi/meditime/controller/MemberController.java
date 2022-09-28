@@ -1,7 +1,7 @@
 package dev.medi.meditime.controller;
 
 
-import dev.medi.meditime.config.jwt.JwtTokenUtil;
+import dev.medi.meditime.util.JwtTokenUtil;
 import dev.medi.meditime.model.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,7 @@ public class MemberController {
 
     @PostMapping("/join")
     public String join(@RequestBody JoinDTO joinDTO) {
+        System.out.println(joinDTO.getEmail());
         memberService.join(joinDTO);
         return "회원가입 완료";
     }

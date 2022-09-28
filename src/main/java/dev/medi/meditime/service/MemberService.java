@@ -11,7 +11,7 @@ public interface MemberService {
     void logout(TokenDTO tokenDTO, String username);
 
     MemberInfo getMemberInfo(String email);
-    
+
     TokenDTO reissue(String refreshToken);
 
 }

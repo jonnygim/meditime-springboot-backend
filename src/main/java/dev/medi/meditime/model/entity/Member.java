@@ -41,20 +41,15 @@ public class Member {
     @Builder.Default
     private Set<Authority> authorities = new HashSet<>();
 
-    @Column(name="reg_date", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDate regDate;
-
     public Member() {}
 
-    public Member(Long memberId, String username, String email, String password, String nickName, Set<Authority> authorities, LocalDate regDate) {
+    public Member(Long memberId, String username, String email, String password, String nickName, Set<Authority> authorities) {
         this.memberId = memberId;
         this.username = username;
         this.email = email;
         this.password = password;
         this.nickName = nickName;
         this.authorities = authorities;
-        this.regDate = regDate;
     }
 
     public static Member ofUser(JoinDTO joinDTO) {
