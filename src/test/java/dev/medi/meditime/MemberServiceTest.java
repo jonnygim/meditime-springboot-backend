@@ -1,7 +1,7 @@
 package dev.medi.meditime;
 
-import dev.medi.meditime.repository.MemberRepository;
-import dev.medi.meditime.service.MemberService;
+import com.plus120.meditime.repository.MemberRepository;
+import com.plus120.meditime.service.MemberService;
 import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
