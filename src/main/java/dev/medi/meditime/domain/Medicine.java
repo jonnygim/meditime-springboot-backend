@@ -1,15 +1,15 @@
 package dev.medi.meditime.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="medicine")
 public class Medicine {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name="item_name")
     private String itemName;
 
@@ -39,92 +39,5 @@ public class Medicine {
     
     @Column(name="item_image")
     private String itemImage;
-
-    public Medicine() {}
-
-    public Medicine(String itemName, String itemImage) {
-        this.itemName = itemName;
-        this.itemImage = itemImage;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getEntpName() {
-        return entpName;
-    }
-
-    public void setEntpName(String entpName) {
-        this.entpName = entpName;
-    }
-
-    public String getEfcItem() {
-        return efcItem;
-    }
-
-    public void setEfcItem(String efcItem) {
-        this.efcItem = efcItem;
-    }
-
-    public String getMethItem() {
-        return methItem;
-    }
-
-    public void setMethItem(String methItem) {
-        this.methItem = methItem;
-    }
-
-    public String getWarnItem() {
-        return warnItem;
-    }
-
-    public void setWarnItem(String warnItem) {
-        this.warnItem = warnItem;
-    }
-
-    public String getAtpnItem() {
-        return atpnItem;
-    }
-
-    public void setAtpnItem(String atpnItem) {
-        this.atpnItem = atpnItem;
-    }
-
-    public String getIntrItem() {
-        return intrItem;
-    }
-
-    public void setIntrItem(String intrItem) {
-        this.intrItem = intrItem;
-    }
-
-    public String getSeItem() {
-        return seItem;
-    }
-
-    public void setSeItem(String seItem) {
-        this.seItem = seItem;
-    }
-
-    public String getDepoItem() {
-        return depoItem;
-    }
-
-    public void setDepoItem(String depoItem) {
-        this.depoItem = depoItem;
-    }
-
-    public String getItemImage() {
-        return itemImage;
-    }
-
-    public void setItemImage(String itemImage) {
-        this.itemImage = itemImage;
-    }
 
 }
