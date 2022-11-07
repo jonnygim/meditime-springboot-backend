@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dev.medi.meditime.model.dto.MediBoxDTO;
-import dev.medi.meditime.model.dto.MediForUserDTO;
-import dev.medi.meditime.model.entity.MediBox;
-import dev.medi.meditime.model.entity.MediForUser;
+import dev.medi.meditime.dto.MediBoxDTO;
+import dev.medi.meditime.dto.MediForUserDTO;
+import dev.medi.meditime.domain.MediBox;
+import dev.medi.meditime.domain.MediForUser;
 import dev.medi.meditime.repository.MediBoxRepository;
 import dev.medi.meditime.repository.MediForUserRepository;
 

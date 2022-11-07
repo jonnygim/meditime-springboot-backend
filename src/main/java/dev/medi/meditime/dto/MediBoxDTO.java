@@ -1,6 +1,6 @@
-package dev.medi.meditime.model.dto;
+package dev.medi.meditime.dto;
 
-import dev.medi.meditime.model.entity.MediBox;
+import dev.medi.meditime.domain.MediBox;
 
 public class MediBoxDTO {
     private Long id;

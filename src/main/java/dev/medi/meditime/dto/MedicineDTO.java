@@ -1,9 +1,8 @@
-package dev.medi.meditime.model.dto;
+package dev.medi.meditime.dto;
 
-import dev.medi.meditime.model.entity.Medicine;
+import dev.medi.meditime.domain.Medicine;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Getter
 @Builder

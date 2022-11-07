@@ -1,14 +1,12 @@
-package dev.medi.meditime.model.entity;
+package dev.medi.meditime.domain;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import dev.medi.meditime.model.dto.JoinDTO;
+import dev.medi.meditime.dto.JoinDTO;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.time.LocalDate;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;

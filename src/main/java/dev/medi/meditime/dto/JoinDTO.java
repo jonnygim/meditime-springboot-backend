@@ -1,4 +1,4 @@
-package dev.medi.meditime.model.dto;
+package dev.medi.meditime.dto;
 
 import lombok.*;
 

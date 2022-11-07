@@ -1,6 +1,6 @@
-package dev.medi.meditime.model.dto;
+package dev.medi.meditime.dto;
 
-import dev.medi.meditime.model.entity.MediForUser;
+import dev.medi.meditime.domain.MediForUser;
 
 public class MediForUserDTO {
     private String itemName;

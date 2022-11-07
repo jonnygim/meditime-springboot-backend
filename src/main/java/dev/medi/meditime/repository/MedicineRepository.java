@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import dev.medi.meditime.model.entity.Medicine;
+import dev.medi.meditime.domain.Medicine;
 
 public interface MedicineRepository extends JpaRepository<Medicine, String>{
 

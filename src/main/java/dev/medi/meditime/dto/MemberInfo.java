@@ -1,10 +1,10 @@
-package dev.medi.meditime.model.dto;
+package dev.medi.meditime.dto;
 
 import lombok.*;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
-public class LoginDTO {
+public class MemberInfo {
     private String email;
-    private String password;
+    private String username;
 }

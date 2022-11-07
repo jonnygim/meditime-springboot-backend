@@ -1,4 +1,4 @@
-package dev.medi.meditime.model.entity;
+package dev.medi.meditime.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

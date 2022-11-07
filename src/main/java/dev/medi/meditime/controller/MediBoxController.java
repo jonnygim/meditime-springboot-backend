@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.medi.meditime.model.dto.MediBoxDTO;
-import dev.medi.meditime.model.dto.MediForUserDTO;
+import dev.medi.meditime.dto.MediBoxDTO;
+import dev.medi.meditime.dto.MediForUserDTO;
 import dev.medi.meditime.service.MediBoxService;
 
 @CrossOrigin(origins = "*")

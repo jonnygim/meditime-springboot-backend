@@ -2,8 +2,8 @@ package dev.medi.meditime.service;
 
 import java.util.List;
 
-import dev.medi.meditime.model.dto.MediBoxDTO;
-import dev.medi.meditime.model.dto.MediForUserDTO;
+import dev.medi.meditime.dto.MediBoxDTO;
+import dev.medi.meditime.dto.MediForUserDTO;
 
 public interface MediBoxService {
     

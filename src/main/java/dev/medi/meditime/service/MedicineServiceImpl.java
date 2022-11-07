@@ -1,13 +1,9 @@
 package dev.medi.meditime.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dev.medi.meditime.model.dto.MedicineDTO;
-import dev.medi.meditime.model.entity.Medicine;
+import dev.medi.meditime.dto.MedicineDTO;
 import dev.medi.meditime.repository.MedicineRepository;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

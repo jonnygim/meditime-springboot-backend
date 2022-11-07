@@ -1,22 +1,11 @@
 package dev.medi.meditime;
 
-import dev.medi.meditime.model.entity.Member;
 import dev.medi.meditime.repository.MemberRepository;
 import dev.medi.meditime.service.MemberService;
-
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-
-@RequiredArgsConstructor
 @SpringBootTest
 public class MemberServiceTest {
 
