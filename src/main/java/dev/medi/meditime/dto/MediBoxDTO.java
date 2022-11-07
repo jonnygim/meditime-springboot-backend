@@ -1,16 +1,16 @@
 package dev.medi.meditime.dto;
 
-import dev.medi.meditime.domain.MediBox;
+import dev.medi.meditime.domain.MedicineBox;
 
 public class MediBoxDTO {
     private Long id;
     private String userId;
     private String itemName;
 
-    public MediBoxDTO(MediBox mediBox) {
-        this.id = mediBox.getId();
-        this.userId = mediBox.getUserId();
-        this.itemName = mediBox.getItemName();
+    public MediBoxDTO(MedicineBox medicineBox) {
+        this.id = medicineBox.getId();
+        this.userId = medicineBox.getUserId();
+        this.itemName = medicineBox.getItemName();
     }
 
     public MediBoxDTO() {};

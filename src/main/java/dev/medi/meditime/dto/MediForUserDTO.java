@@ -1,7 +1,5 @@
 package dev.medi.meditime.dto;
 
-import dev.medi.meditime.domain.MediForUser;
-
 public class MediForUserDTO {
     private String itemName;
     private String itemImage;
