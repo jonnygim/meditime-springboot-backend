@@ -3,13 +3,12 @@ package dev.medi.meditime.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dev.medi.meditime.domain.MedicineBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.medi.meditime.dto.MediBoxDTO;
 import dev.medi.meditime.dto.MediForUserDTO;
-import dev.medi.meditime.domain.MediBox;
-import dev.medi.meditime.domain.MediForUser;
 import dev.medi.meditime.repository.MediBoxRepository;
 import dev.medi.meditime.repository.MediForUserRepository;
 
@@ -26,7 +25,7 @@ public class MediBoxServiceImpl implements MediBoxService{
     @Override
     public void insertMediBox(MediBoxDTO mediBoxDTO) {
 
-        MediBox medibox = new MediBox();
+        MedicineBox medibox = new MedicineBox();
 
         medibox.setId(mediBoxDTO.getId());
         medibox.setUserId(mediBoxDTO.getUserId());
