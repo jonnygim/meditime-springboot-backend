@@ -10,8 +10,8 @@ import com.plus120.meditime.domain.Medicine;
 
 public interface MedicineRepository extends JpaRepository<Medicine, String>{
 
-    @Query("select m from Medicine m where m.itemName like %:itemName% or m.efcItem like %:efcItem%")
-    List<Medicine> searchMediList(@Param("itemName") String itemName, @Param("efcItem") String efcItem );
-    
+//    @Query("select m from Medicine m where m.itemName like %:itemName% or m.efcItem like %:efcItem%")
+//    List<Medicine> searchMediList(@Param("itemName") String itemName, @Param("efcItem") String efcItem );
+//
 }
 

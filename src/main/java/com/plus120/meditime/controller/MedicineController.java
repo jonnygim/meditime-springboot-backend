@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.plus120.meditime.dto.MedicineDTO;
 import com.plus120.meditime.service.MedicineService;
 
 @CrossOrigin(origins = "*")
@@ -18,9 +17,5 @@ public class MedicineController {
     @Autowired
     private MedicineService medicineService;
 
-    @GetMapping
-    public MedicineDTO getMedicine(@RequestParam("keyword") String itemName, @RequestParam("keyword") String efcItem) {
-        return medicineService.getMedicine(itemName, efcItem);
-       
-    }
+
 }
