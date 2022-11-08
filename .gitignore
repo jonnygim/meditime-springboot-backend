@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,windows,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,gradle,intellij+all,windows,macos
 
+## resources
+/src/main/resources/application.yaml
+
 ## Querydsl
 /src/main/generated
 
@@ -36,6 +39,7 @@
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
+.gradle
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
