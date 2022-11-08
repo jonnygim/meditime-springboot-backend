@@ -1,10 +1,7 @@
-package dev.medi.meditime.repository;
+package com.plus120.meditime.repository;
 
 import com.plus120.meditime.config.JpaConfig;
 import com.plus120.meditime.domain.Article;
-import com.plus120.meditime.repository.ArticleCommentRepository;
-import com.plus120.meditime.repository.ArticleRepository;
-import com.plus120.meditime.repository.UserAccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("testdb")
 @DisplayName("JPA 연결 테스트")
