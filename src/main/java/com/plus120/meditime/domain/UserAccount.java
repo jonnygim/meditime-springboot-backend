@@ -12,18 +12,16 @@ import java.util.Objects;
 @Table(indexes = {
         @Index(columnList = "userId", unique = true),
         @Index(columnList = "email", unique = true),
-        @Index(columnList = "created"),
+        @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
 @Entity
 public class UserAccount extends AuditingFields{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="member_id")
     private Long id;
 
-    @Setter
-    @Column(nullable = false, length = 50) private String userId;
+    @Setter @Column(nullable = false, length = 50) private String userId;
     @Setter @Column(nullable = false) private String userPassword;
 
     @Setter @Column(length = 100) private String email;
