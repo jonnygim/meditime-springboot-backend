@@ -12,16 +12,16 @@ import java.util.Set;
 @Getter
 @ToString
 @Table(indexes = {
-        @Index(columnList = "item_name"),
-        @Index(columnList = "entp_name"),
-        @Index(columnList = "efc_name"),
-        @Index(columnList = "meth_name"),
-        @Index(columnList = "warn_name"),
-        @Index(columnList = "atpn_name"),
-        @Index(columnList = "intr_name"),
-        @Index(columnList = "se_name"),
-        @Index(columnList = "depo_name"),
-        @Index(columnList = "item_image")
+        @Index(columnList = "itemName"),
+        @Index(columnList = "entpName"),
+        @Index(columnList = "itemEfcy"),
+        @Index(columnList = "itemUseMethod"),
+        @Index(columnList = "itemAtpnWarn"),
+        @Index(columnList = "itemAtpn"),
+        @Index(columnList = "itemIntrc"),
+        @Index(columnList = "itemSe"),
+        @Index(columnList = "itemDepositMethod"),
+        @Index(columnList = "itemImage")
 })
 @Entity
 public class Medicine {
@@ -38,33 +38,35 @@ public class Medicine {
 
     @Setter @Column(nullable = false) private String itemName;
     @Setter @Column(nullable = false) private String entpName;
-    @Setter @Column(nullable = false) private String efcItem;
-    @Setter @Column(nullable = false) private String methItem;
-    @Setter @Column(nullable = false) private String warnItem;
-    @Setter @Column(nullable = false) private String atpnItem;
-    @Setter @Column(nullable = false) private String intrItem;
-    @Setter @Column(nullable = false) private String seItem;
-    @Setter @Column(nullable = false) private String depoItem;
+    @Setter @Column(nullable = false) private String itemEfcy;
+    @Setter @Column(nullable = false) private String itemUseMethod;
+    @Setter @Column(nullable = false) private String itemAtpnWarn;
+    @Setter @Column(nullable = false) private String itemAtpn;
+    @Setter @Column(nullable = false) private String itemIntrc;
+    @Setter @Column(nullable = false) private String itemSe;
+    @Setter @Column(nullable = false) private String itemDepositMethod;
     @Setter @Column(nullable = false) private String itemImage;
 
     protected Medicine() {}
 
-    private Medicine(String itemName, String entpName, String efcItem, String methItem, String warnItem, String atpnItem, String intrItem, String seItem, String depoItem, String itemImage) {
+    private Medicine(String itemName, String entpName, String itemEfcy, String itemUseMethod, String itemAtpnWarn, String itemAtpn, String itemIntrc, String itemSe, String itemDepositMethod, String itemImage) {
         this.itemName = itemName;
         this.entpName = entpName;
-        this.efcItem = efcItem;
-        this.methItem = methItem;
-        this.warnItem = warnItem;
-        this.atpnItem = atpnItem;
-        this.intrItem = intrItem;
-        this.seItem = seItem;
-        this.depoItem = depoItem;
+        this.itemEfcy = itemEfcy;
+        this.itemUseMethod = itemUseMethod;
+        this.itemAtpnWarn = itemAtpnWarn;
+        this.itemAtpn = itemAtpn;
+        this.itemIntrc = itemIntrc;
+        this.itemSe = itemSe;
+        this.itemDepositMethod = itemDepositMethod;
         this.itemImage = itemImage;
     }
 
-    public static Medicine of(String itemName, String entpName, String efcItem, String methItem, String warnItem, String atpnItem, String intrItem, String seItem, String depoItem, String itemImage) {
-        return new Medicine(itemName, entpName, efcItem, methItem, warnItem, atpnItem, intrItem, seItem, depoItem, itemImage);
+    public static Medicine of(String itemName, String entpName, String itemEfcy, String itemUseMethod, String itemAtpnWarn, String itemAtpn, String itemIntrc, String itemSe, String itemDepositMethod, String itemImage) {
+        return new Medicine(itemName, entpName, itemEfcy, itemUseMethod, itemAtpnWarn, itemAtpn, itemIntrc, itemSe, itemDepositMethod, itemImage);
     }
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -3,7 +3,7 @@ package com.plus120.meditime.repository;
 import com.plus120.meditime.domain.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
+public interface UserAccountRepository extends JpaRepository<UserAccount, String>{
 
 //    Optional<UserAccount> findByEmail(String email);
 //
