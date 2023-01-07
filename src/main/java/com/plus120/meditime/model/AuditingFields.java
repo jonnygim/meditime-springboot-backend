@@ -1,4 +1,4 @@
-package com.plus120.meditime.domain;
+package com.plus120.meditime.model;
 
 import lombok.Getter;
 import lombok.ToString;

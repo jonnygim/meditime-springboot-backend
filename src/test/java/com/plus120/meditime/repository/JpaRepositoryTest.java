@@ -1,7 +1,7 @@
 package com.plus120.meditime.repository;
 
 import com.plus120.meditime.config.JpaConfig;
-import com.plus120.meditime.domain.Article;
+import com.plus120.meditime.model.Article;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +21,16 @@ class JpaRepositoryTest {
 
     private final ArticleRepository articleRepository;
     private final ArticleCommentRepository articleCommentRepository;
-    private final UserAccountRepository userAccountRepository;
+    private final UserEntityRepository userEntityRepository;
 
     public JpaRepositoryTest(
             @Autowired ArticleRepository articleRepository,
             @Autowired ArticleCommentRepository articleCommentRepository,
-            @Autowired UserAccountRepository userAccountRepository
+            @Autowired UserEntityRepository userEntityRepository
     ) {
         this.articleRepository = articleRepository;
         this.articleCommentRepository = articleCommentRepository;
-        this.userAccountRepository = userAccountRepository;
+        this.userEntityRepository = userEntityRepository;
     }
 
     @DisplayName("select 테스트")

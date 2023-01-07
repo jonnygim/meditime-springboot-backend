@@ -1,9 +1,9 @@
-package com.plus120.meditime.domain;
+package com.plus120.meditime.model;
 
+import com.plus120.meditime.model.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.catalina.User;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -31,7 +31,7 @@ public class ArticleComment {
 
 
     @Setter @ManyToOne(optional = false) private Article article; // 게시글 (ID)
-    @Setter @ManyToOne(optional = false) private UserAccount userAccount; // 유저 정보 (ID)
+    @Setter @ManyToOne(optional = false) private UserEntity userEntity; // 유저 정보 (ID)
     @Setter @Column(nullable = false, length = 500) private String content;
 
     @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
@@ -41,14 +41,14 @@ public class ArticleComment {
 
     protected ArticleComment() {}
 
-    private ArticleComment(Article article, UserAccount userAccount, String content) {
+    private ArticleComment(Article article, UserEntity userEntity, String content) {
         this.article = article;
-        this.userAccount = userAccount;
+        this.userEntity = userEntity;
         this.content = content;
     }
 
-    public static ArticleComment of(Article article, UserAccount userAccount, String content) {
-        return new ArticleComment(article, userAccount, content);
+    public static ArticleComment of(Article article, UserEntity userEntity, String content) {
+        return new ArticleComment(article, userEntity, content);
     }
 
     @Override

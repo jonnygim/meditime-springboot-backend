@@ -1,5 +1,6 @@
-package com.plus120.meditime.domain;
+package com.plus120.meditime.model.entity;
 
+import com.plus120.meditime.model.AuditingFields;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +17,7 @@ import java.util.Objects;
         @Index(columnList = "createdBy")
 })
 @Entity
-public class UserAccount extends AuditingFields{
+public class UserEntity extends AuditingFields {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +29,9 @@ public class UserAccount extends AuditingFields{
     @Setter @Column(length = 100) private String nickname;
     @Setter private String memo;
 
-    protected UserAccount() {}
+    protected UserEntity() {}
 
-    private UserAccount(String userId, String userPassword, String email, String nickname, String memo) {
+    private UserEntity(String userId, String userPassword, String email, String nickname, String memo) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
@@ -38,15 +39,15 @@ public class UserAccount extends AuditingFields{
         this.memo = memo;
     }
 
-    public static UserAccount of(String userId, String userPassword, String email, String nickname, String memo) {
-        return new UserAccount(userId, userPassword, email, nickname, memo);
+    public static UserEntity of(String userId, String userPassword, String email, String nickname, String memo) {
+        return new UserEntity(userId, userPassword, email, nickname, memo);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserAccount userAccount)) return false;
-        return id != null && id.equals(userAccount.id);
+        if (!(o instanceof UserEntity userEntity)) return false;
+        return id != null && id.equals(userEntity.id);
     }
 
     @Override
