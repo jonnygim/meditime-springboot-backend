@@ -1,4 +1,4 @@
-package com.plus120.meditime.domain.constant;
+package com.plus120.meditime.model.constant;
 
 import lombok.Getter;
 

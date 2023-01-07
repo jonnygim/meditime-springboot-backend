@@ -1,9 +1,9 @@
 package com.plus120.meditime.repository;
 
-import com.plus120.meditime.domain.UserAccount;
+import com.plus120.meditime.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserAccountRepository extends JpaRepository<UserAccount, String>{
+public interface UserEntityRepository extends JpaRepository<UserEntity, String>{
 
 //    Optional<UserAccount> findByEmail(String email);
 //
