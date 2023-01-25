@@ -1,5 +1,0 @@
-<?xml version="1.0" ?>
-<thlogin>
-    <attr sel="#header" th:replace="header :: header" />
-
-</thlogin>
