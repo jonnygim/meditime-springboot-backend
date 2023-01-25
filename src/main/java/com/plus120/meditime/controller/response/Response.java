@@ -13,7 +13,7 @@ public class Response<T> { // response 규격화
 
     // 성공했을 때
     public static <T> Response<T> success(T result) {
-        return new Response<>("SUCESS", result);
+        return new Response<>("SUCCESS", result);
     }
 
     // error
