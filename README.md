@@ -54,7 +54,7 @@
 - Spring Secutiry
 - queryDSL
 - GCP → Oracle Cloud
-- MariaDB
+- MariaDB -> 
 
 ### Frontend
 
