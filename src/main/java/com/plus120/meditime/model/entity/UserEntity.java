@@ -1,6 +1,7 @@
 package com.plus120.meditime.model.entity;
 
 import com.plus120.meditime.model.AuditingFields;
+import com.plus120.meditime.model.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,49 +11,37 @@ import java.util.Objects;
 
 @Getter
 @ToString
-@Table(indexes = {
-        @Index(columnList = "userId", unique = true),
-        @Index(columnList = "email", unique = true),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
-})
 @Entity
 public class UserEntity extends AuditingFields {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @Setter @Column(nullable = false, length = 50) private String userId;
-    @Setter @Column(nullable = false) private String userPassword;
+    @Setter @Column(nullable = false, length = 50) private String userName;
+    @Setter @Column(nullable = false) private String password;
+    @Column(name = "role") @Enumerated(EnumType.STRING) private UserRole role = UserRole.USER;
 
     @Setter @Column(length = 100) private String email;
     @Setter @Column(length = 100) private String nickname;
-    @Setter private String memo;
 
     protected UserEntity() {}
 
-    private UserEntity(String userId, String userPassword, String email, String nickname, String memo) {
-        this.userId = userId;
-        this.userPassword = userPassword;
+    private UserEntity(String userName, String password, String email, String nickname) {
+        this.userName = userName;
+        this.password = password;
         this.email = email;
         this.nickname = nickname;
-        this.memo = memo;
     }
 
-    public static UserEntity of(String userId, String userPassword, String email, String nickname, String memo) {
-        return new UserEntity(userId, userPassword, email, nickname, memo);
-    }
+    // new Entity
+    public static UserEntity of(String userName, String password, String email, String nickname) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserName(userName);
+        userEntity.setPassword(password);
+        userEntity.setEmail(email);
+        userEntity.setNickname(nickname);
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserEntity userEntity)) return false;
-        return id != null && id.equals(userEntity.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+        return userEntity;
     }
 
 
