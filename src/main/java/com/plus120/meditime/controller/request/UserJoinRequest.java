@@ -4,23 +4,23 @@ import lombok.Getter;
 
 @Getter
 public class UserJoinRequest {
-    private String userId;
+    private String userName;
     private String userPassword;
     private String email;
     private String nickname;
 
     public UserJoinRequest() {}
 
-    private UserJoinRequest(String userId, String userPassword, String email, String nickname) {
-        this.userId = userId;
+    private UserJoinRequest(String userName, String userPassword, String email, String nickname) {
+        this.userName = userName;
         this.userPassword = userPassword;
         this.email = email;
         this.nickname = nickname;
     }
 
-    public static UserJoinRequest of(String userId, String userPassword, String email, String nickname) {
+    public static UserJoinRequest of(String userName, String userPassword, String email, String nickname) {
         return new UserJoinRequest(
-                userId,
+                userName,
                 userPassword,
                 email,
                 nickname
