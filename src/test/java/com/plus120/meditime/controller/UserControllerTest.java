@@ -30,16 +30,17 @@ class UserControllerTest {
     @Test
     public void joinTest() throws Exception {
         // Given
-        String userId = "userId";
+
+        String userName = "userName";
         String password = "password";
         String email = "test@email.com";
         String nickname = "nickname";
-        given(userService.join(userId, password, email, nickname)).willReturn(mock(User.class));
+        given(userService.join(userName, password, email, nickname)).willReturn(mock(User.class));
 
         // When & Then
         mockMvc.perform(post("/api/v1/users/join")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(UserJoinRequest.of(userId, password, email, nickname)))
+                .content(objectMapper.writeValueAsBytes(UserJoinRequest.of(userName, password, email, nickname)))
                 ).andDo(print())
                 .andExpect(status().isOk());
     }
