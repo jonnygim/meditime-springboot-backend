@@ -48,13 +48,13 @@
 
 ### Backend
 
-- Java 1.8 → Java 17
+- Java 1.8
 - SpringBoot 2.7.4
 - Spring Data JPA
 - Spring Secutiry
 - queryDSL
 - GCP → Oracle Cloud
-- MariaDB -> 
+- MariaDB -> PostgreSQL
 
 ### Frontend
 
